@@ -1,4 +1,4 @@
-#Project Name: Emerging Technologies
+Project Name: Emerging Technologies
 
 Abstract: Create an e-commerce B2C application using flask app. Emerging Technologies is an e-commerce B2C application which will provide end customers with latest and greatest technology products to purchase with Cybersecurity risk ratings whether the products are vulnerable or not.
 
