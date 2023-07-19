@@ -1,0 +1,82 @@
+{
+  "products": [
+    {
+      "productID": "123",
+      "productName": "Laptop",
+      "productPrice": 999.99,
+      "productRating": 4.5,
+      "productDesc": "Powerful laptop for all your computing needs",
+      "productImage": "laptop.jpg",
+      "isComputer": true,
+      "isKitchenware": false,
+      "isOutdoor": false,
+      "isHygiene": false,
+      "isOther": false
+    },
+    {
+      "productID": "456",
+      "productName": "Cookware Set",
+      "productPrice": 89.99,
+      "productRating": 4.2,
+      "productDesc": "High-quality cookware set for your kitchen",
+      "productImage": "cookware.jpg",
+      "isComputer": false,
+      "isKitchenware": true,
+      "isOutdoor": false,
+      "isHygiene": false,
+      "isOther": false
+    },
+    {
+      "productID": "789",
+      "productName": "Hiking Backpack",
+      "productPrice": 49.99,
+      "productRating": 4.8,
+      "productDesc": "Durable and spacious backpack for your outdoor adventures",
+      "productImage": "backpack.jpg",
+      "isComputer": false,
+      "isKitchenware": false,
+      "isOutdoor": true,
+      "isHygiene": false,
+      "isOther": false
+    },
+    {
+      "productID": "101",
+      "productName": "Smartphone",
+      "productPrice": 799.99,
+      "productRating": 4.7,
+      "productDesc": "High-end smartphone with advanced features",
+      "productImage": "smartphone.jpg",
+      "isComputer": false,
+      "isKitchenware": false,
+      "isOutdoor": false,
+      "isHygiene": false,
+      "isOther": false
+    },
+    {
+      "productID": "202",
+      "productName": "Fitness Tracker",
+      "productPrice": 39.99,
+      "productRating": 4.4,
+      "productDesc": "Track your fitness activities with this smart tracker",
+      "productImage": "fitnesstracker.jpg",
+      "isComputer": false,
+      "isKitchenware": false,
+      "isOutdoor": false,
+      "isHygiene": false,
+      "isOther": false
+    },
+    {
+      "productID": "303",
+      "productName": "Scented Candle Set",
+      "productPrice": 19.99,
+      "productRating": 4.6,
+      "productDesc": "Create a relaxing ambiance with these scented candles",
+      "productImage": "candles.jpg",
+      "isComputer": false,
+      "isKitchenware": false,
+      "isOutdoor": false,
+      "isHygiene": false,
+      "isOther": false
+    }
+  ]
+}
