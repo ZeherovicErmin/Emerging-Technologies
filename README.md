@@ -30,9 +30,9 @@ Schedule:
 
 1. Proposal – July 12, 2023
 
-2. Flowcharts – July 14, 2023 – July 16, 2023
+2. Flowcharts – July 14, 2023 – July 19, 2023
 
-3. Development of the project – July 17, 2023 – July 25, 2023
+3. Development of the project – July 20, 2023 – July 25, 2023
 
 4. Creation of the Report – July 26, 2023 – July 28, 2023
 
