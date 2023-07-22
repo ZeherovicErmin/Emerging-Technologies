@@ -116,16 +116,23 @@ def loadJson():
         products.append(product)
     return products
 
-#-----------------------------------------------------------------------------
-#Still working on this part - allow link to return specific product
 @app.route('/product', methods=['GET'])
-def get_specific_product(products):
-    desired_product_name = input("Enter the product name: ")
-    desired_product_name = string(request.args.get('string', Laptop))
+def get_specific_product():
+    desired_product_name = request.args.get('name')  
+    products = loadJson()  
+    found_products = []
     for product in products:
         if product.getProductName() == desired_product_name:
-            return jsonify(product.printProdInfo())           
-#-----------------------------------------------------------------------------
+            found_products.append({
+                'productID': product.getProductID(),
+                'productName': product.getProductName(),
+                'productPrice': product.getProductPrice(),
+                'productRating': product.getProductRating(),
+                'productDesc': product.getProductDesc(),
+                'productImage': product.getProductImage()
+            })
+    return jsonify(found_products)
+
 
 def displayProducts(products):
     product_info = []
