@@ -116,6 +116,7 @@ def loadJson():
         products.append(product)
     return products
 
+#Can add for example (/product?name=Laptop) at the end of link and return laptop information
 @app.route('/product', methods=['GET'])
 def get_specific_product():
     desired_product_name = request.args.get('name')  
