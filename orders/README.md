@@ -27,6 +27,11 @@ Endpoints and details :
    method : POST
    endpoint : {{hosturl}}/orders/addNewOrder'
    sample json object for post request:
-     
+      {
+      "orderID": "DEF321",
+      "productID": "P987",
+      "userID": "U654",
+      "quantity": 3
+    }
    
 
