@@ -12,38 +12,46 @@ def main():
         action = request.form.get('action')
         if action == '1':
             addItem()
+            return render_template('index.html', message="Add an Item")  
         elif action == '2':
             removeItem()
+            return render_template('index.html', message="Remove an Item")  
         elif action == '3':
             totalPrice()
+            return render_template('index.html', message="Display Total")  
         elif action == '4':
-            checkOut()
+            #checkout()
+            print_items()
+            return render_template('index.html', message="Proceed to Checkout")  
         else:
             return render_template('index.html', message="Invalid action")
-        return render_template('index.html', message="Action successful")  
+        
     else:
         return render_template('index.html', message="")  
 
 
 
 #add a product to the shopping cart. If the item already exists, increiment.
+@app.route('/shoppingcart', methods=['GET', 'POST'])
 def addItem(): 
-    chosenItem = input("\nWhich Product would you like to buy?\n1. Laptop\n2. Cookware Set\n3. Hiking Backpack\n4. Smartphone\n5. Fitness Tracker\n6. Scented Candle Set\nItem: ")
-    if chosenItem == 1:
-        item = get_products_from_products_microservice("Laptop")
-    elif chosenItem == 2:
-        item = get_products_from_products_microservice("Cookware Set")
-    elif chosenItem == 3:
-        item = get_products_from_products_microservice("Hiking Backpack")
-    elif chosenItem == 4:
-        item = get_products_from_products_microservice("Smartphone")
-    elif chosenItem == 5:
-        item = get_products_from_products_microservice("Fitness Tracker")
-    elif chosenItem == 6:
-        item = get_products_from_products_microservice("Scented Candle Set")
-    else:
-        return None
-    
+    if request.method =='POST':
+        chosenItem = request.form.get('chosenItem')    
+        if chosenItem == '1':
+            item = get_products_from_products_microservice("Laptop")
+        elif chosenItem == '2':
+            item = get_products_from_products_microservice("Cookware Set")
+        elif chosenItem == '3':
+            item = get_products_from_products_microservice("Hiking Backpack")
+        elif chosenItem == '4':
+            item = get_products_from_products_microservice("Smartphone")
+        elif chosenItem == '5':
+            item = get_products_from_products_microservice("Fitness Tracker")
+        elif chosenItem == '6':
+            item = get_products_from_products_microservice("Scented Candle Set")
+        else:
+            return render_template('addItem.html', message="Failed to add item")
+        return render_template('addItem.html', message="Item has been added")
+          
     addToCart(item)
 
 def addToCart(item):
@@ -56,7 +64,9 @@ def addToCart(item):
        shoppingCart.append((item, 1))
 
 def print_items():
-    print("items =", items)   
+    global shoppingCart
+    for item, quantity in shoppingCart:
+        print(f"{item}: {quantity}") 
 
 def removeItem():
     prod = 0
