@@ -19,3 +19,16 @@ class Orders:
         self.productID = productID
         self.userID = userID
         self.quantity = quantity
+
+        # Getter methods
+        def getProductID(self):
+            return self.productID
+
+        def getOrderID(self):
+            return self.orderID
+
+        def getUserID(self):
+            return self.userID
+
+        def getQuantity(self):
+            return self.quantity
