@@ -65,6 +65,21 @@ def findByUserID(userID):
             return displayOrders(order)
     return "No order details found for user associated with user ID :" + userID
 
+#add new order
+@app.route('/orders/addNewOrder', methods=['POST'])
+def addNewOrder():
+    try:
+        new_order = request.get_json()  # Assuming the request body contains the new order as JSON
+        if new_order:
+            orders_data = load_json()
+            orders_data["orders"].append(new_order)
+            save_json(orders_data)
+            return jsonify({"message": "New order added successfully."}), 200
+        else:
+            return jsonify({"message": "Invalid JSON data in the request body."}), 400
+    except Exception as e:
+        return jsonify({"message": "Error occurred while adding the new order.", "error": str(e)}), 500
+
 
 def displayOrders(orders):
     order_info = []
