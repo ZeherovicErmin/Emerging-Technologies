@@ -35,12 +35,12 @@ class Orders:
 
 
 
-
+#fetch all orders
 @app.route('/allOrders')
 def main():
     orders = loadJsonAsList()
     return jsonify(displayOrders(orders))
-
+#fetch orders based on order ID
 @app.route('/orders/<orderID>', methods=['GET'])
 def findByOrderID(orderID):
     orders = loadJsonAsList()
@@ -53,6 +53,17 @@ def findByOrderID(orderID):
             return displayOrders(order)
 
     return "No such orders found with  order ID :" + orderID
+
+#fetch order based on userID
+@app.route('/orders/user/<userID>', methods=['GET'])
+def findByUserID(userID):
+    orders = loadJsonAsList()
+    userID = request.view_args['userID']
+    for order in orders:
+        print(order.getOrderID())
+        if(order.getUserID()==userID):
+            return displayOrders(order)
+    return "No order details found for user associated with user ID :" + userID
 
 
 def displayOrders(orders):
