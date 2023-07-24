@@ -13,7 +13,7 @@ Endpoints and details :
 
 1. To fetch all the order details
    method : GET
-   endpoint : {{hosturl}}/orders/allOrders
+   endpoint : {{hosturl}}/allOrders
    
 2. To fetch order details based on orderID
    method : GET
