@@ -1,0 +1,34 @@
+{
+  "orders": [
+    {
+      "orderID": "ABC123",
+      "productID": "P456",
+      "userID": "U789",
+      "quantity": 2
+    },
+    {
+      "orderID": "XYZ456",
+      "productID": "P789",
+      "userID": "U123",
+      "quantity": 1
+    },
+    {
+      "orderID": "LMN789",
+      "productID": "P123",
+      "userID": "U456",
+      "quantity": 5
+    },
+    {
+      "orderID": "DEF321",
+      "productID": "P987",
+      "userID": "U654",
+      "quantity": 3
+    },
+    {
+      "orderID": "O12345",
+      "productID": "P789",
+      "quantity": 10,
+      "userID": "U444"
+    }
+  ]
+}
