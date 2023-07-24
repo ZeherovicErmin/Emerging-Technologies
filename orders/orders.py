@@ -21,16 +21,16 @@ class Orders:
         self.quantity = quantity
 
         # Getter methods
-        def getProductID(self):
+    def getProductID(self):
             return self.productID
 
-        def getOrderID(self):
+    def getOrderID(self):
             return self.orderID
 
-        def getUserID(self):
+    def getUserID(self):
             return self.userID
 
-        def getQuantity(self):
+    def getQuantity(self):
             return self.quantity
 
 
@@ -38,8 +38,10 @@ class Orders:
 #fetch all orders
 @app.route('/allOrders')
 def main():
-    orders = loadJsonAsList()
+    orders = load_json()
+    print(type(orders))
     return jsonify(displayOrders(orders))
+
 #fetch orders based on order ID
 @app.route('/orders/<orderID>', methods=['GET'])
 def findByOrderID(orderID):
@@ -85,6 +87,15 @@ def displayOrders(orders):
     order_info = []
 
     if (type(orders) == list.__class__):
+        for order in orders:
+            order_info.append({
+                'orderID': order.getOrderID(),
+                'productID': order.getProductID(),
+                'userID': order.getUserID(),
+                'quantity': order.getQuantity()
+
+            })
+    if(type(orders) == dict.__class__):
         for order in orders:
             order_info.append({
                 'orderID': order.getOrderID(),
