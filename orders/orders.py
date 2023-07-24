@@ -39,16 +39,13 @@ class Orders:
 @app.route('/allOrders')
 def main():
     orders = load_json()
-    print(type(orders))
-    return jsonify(displayOrders(orders))
+    return orders
 
 #fetch orders based on order ID
 @app.route('/orders/<orderID>', methods=['GET'])
 def findByOrderID(orderID):
     orders = loadJsonAsList()
     orderID = request.view_args['orderID']
-    print(orderID)
-    print(orders)
     for order in orders:
         print(order.getOrderID())
         if(order.getOrderID()==orderID):
@@ -87,15 +84,6 @@ def displayOrders(orders):
     order_info = []
 
     if (type(orders) == list.__class__):
-        for order in orders:
-            order_info.append({
-                'orderID': order.getOrderID(),
-                'productID': order.getProductID(),
-                'userID': order.getUserID(),
-                'quantity': order.getQuantity()
-
-            })
-    if(type(orders) == dict.__class__):
         for order in orders:
             order_info.append({
                 'orderID': order.getOrderID(),
