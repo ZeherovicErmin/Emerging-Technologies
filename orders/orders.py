@@ -32,3 +32,25 @@ class Orders:
 
         def getQuantity(self):
             return self.quantity
+
+        def displayOrders(orders):
+            order_info = []
+
+            if (type(orders) == list.__class__):
+                for order in orders:
+                    order_info.append({
+                        'orderID': order.getOrderID(),
+                        'productID': order.getProductID(),
+                        'userID': order.getUserID(),
+                        'quantity': order.getQuantity()
+
+                    })
+            else:
+                order_info.append({
+                    'orderID': orders.getOrderID(),
+                    'productID': orders.getProductID(),
+                    'userID': orders.getUserID(),
+                    'quantity': orders.getQuantity()
+
+                })
+            return order_info
