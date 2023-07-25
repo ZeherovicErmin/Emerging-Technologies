@@ -1,8 +1,28 @@
 from flask import Flask, render_template, jsonify, request
 import json
-
+import docker
 
 app = Flask(__name__)
+
+#Add a item class????
+class Item:
+    def __init__(self, name, price):
+        self.name = name
+        self.price = price
+
+    def get_name(self):
+        return self.name
+
+    def get_price(self):
+        return self.price
+
+    def set_name(self, name):
+        self.name = name
+
+    def set_price(self, price):
+        self.price = price
+    
+
 
 shoppingCart = []
 
@@ -30,6 +50,7 @@ def main():
     else:
         return render_template('index.html', message="")  
 
+#Display addItem.html
 @app.route('/shoppingcart', methods=['GET'])
 def showAddItemPage():
     return render_template('addItem.html')
@@ -37,6 +58,7 @@ def showAddItemPage():
 @app.route('/shoppingcart', methods=['POST'])
 def addItem():
     global shoppingCart
+    container = run_docker_container('hl5846/products', {'80/tcp': 80})
     if request.method == 'POST':
         chosenItem = request.form.get('chosenItem')
         if chosenItem == '1':
@@ -56,20 +78,39 @@ def addItem():
 
     addToCart(item)
     return render_template('addItem.html', message="Item has been added")
+    container.stop()
+    container.remove()
 
 def addToCart(item):
-   global shoppingCart
-   for i, (name, quantity) in enumerate(shoppingCart):
-       if name == item:
-           shoppingCart[i] = (name, quantity + 1)
-           break
-   else:
-       shoppingCart.append((item, 1))
+    global shoppingCart
+    item_name = item['productName']
+    item_price = item['productPrice']
+    
+    # Create an instance of the Item class with the parsed information
+    item_instance = Item(item_name, item_price)
 
+    # Check if the item already exists in the shopping cart
+    for i, (cart_item, quantity) in enumerate(shoppingCart):
+        if cart_item.name == item_instance.name:
+            shoppingCart[i] = (cart_item, quantity + 1)
+            break
+    else:
+        # If the item doesn't exist in the shopping cart, add it
+        shoppingCart.append((item_instance, 1))
+
+
+# Display checkout.html
+@app.route('/checkout', methods=['GET'])
+def checkoutPage():
+    return render_template('checkout.html')
+
+@app.route('/checkout', methods=['POST'])
 def print_items():
     global shoppingCart
+    cart_items = []
     for item, quantity in shoppingCart:
-        print(f"{item}: {quantity}") 
+        cart_items.append(f"Item: {item.get_name()}, Quantity: {quantity}")
+    return render_template('checkout.html', items=cart_items)
 
 def removeItem():
     prod = 0
@@ -78,6 +119,16 @@ def totalPrice():
 
 def checkOut():
     prod =0
+
+def run_docker_container(image_name, port_mapping):
+    # Create a Docker client using the environment variables or default settings
+    client = docker.from_env()
+    
+    # Run the Docker container with the specified image name and port mapping
+    container = client.containers.run(image_name, detach=True, ports=port_mapping)
+    
+    # Return the container instance, in case you need to interact with it later
+    return container
 
 def get_products_from_products_microservice(productName):
 
