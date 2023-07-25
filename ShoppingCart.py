@@ -1,6 +1,7 @@
 from flask import Flask, render_template, jsonify, request
 import json
 
+
 app = Flask(__name__)
 
 shoppingCart = []
@@ -25,17 +26,19 @@ def main():
             return render_template('index.html', message="Proceed to Checkout")  
         else:
             return render_template('index.html', message="Invalid action")
-        
+               
     else:
         return render_template('index.html', message="")  
 
-
-
+@app.route('/shoppingcart', methods=['GET'])
+def showAddItemPage():
+    return render_template('addItem.html')
 #add a product to the shopping cart. If the item already exists, increiment.
-@app.route('/shoppingcart', methods=['GET', 'POST'])
-def addItem(): 
-    if request.method =='POST':
-        chosenItem = request.form.get('chosenItem')    
+@app.route('/shoppingcart', methods=['POST'])
+def addItem():
+    global shoppingCart
+    if request.method == 'POST':
+        chosenItem = request.form.get('chosenItem')
         if chosenItem == '1':
             item = get_products_from_products_microservice("Laptop")
         elif chosenItem == '2':
@@ -50,9 +53,9 @@ def addItem():
             item = get_products_from_products_microservice("Scented Candle Set")
         else:
             return render_template('addItem.html', message="Failed to add item")
-        return render_template('addItem.html', message="Item has been added")
-          
+
     addToCart(item)
+    return render_template('addItem.html', message="Item has been added")
 
 def addToCart(item):
    global shoppingCart
@@ -77,14 +80,20 @@ def checkOut():
     prod =0
 
 def get_products_from_products_microservice(productName):
-    productsUrl = 'http://127.0.0.1:80/product?name=' + productName 
-    response = requests.get(productsUrl)
 
-    if response.status_code == 200:
-        product = response.json()
-        return product
-    else:
-        return "Sorry, this product does not exist."
+    productsUrl = f'http://localhost:80/product?name={productName}'
+    try:
+        response = requests.get(productsUrl)
+
+        if response.status_code == 200:
+            product = response.json()
+            return product
+        else:
+            return "Sorry, this product does not exist."
+
+    except requests.exceptions.RequestException as e:
+        # Handle any errors that occur during the HTTP request
+        return "Error connecting to the microservice: " + str(e)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=10)
