@@ -1,6 +1,7 @@
 from flask import Flask, render_template, jsonify, request
 import json
 import docker
+import requests
 
 app = Flask(__name__)
 
@@ -41,7 +42,6 @@ def main():
             totalPrice()
             return render_template('index.html', message="Display Total")  
         elif action == '4':
-            #checkout()
             print_items()
             return render_template('index.html', message="Proceed to Checkout")  
         else:
@@ -99,26 +99,23 @@ def addToCart(item):
         shoppingCart.append((item_instance, 1))
 
 
-# Display checkout.html
-@app.route('/checkout', methods=['GET'])
-def checkoutPage():
-    return render_template('checkout.html')
-
-@app.route('/checkout', methods=['POST'])
+@app.route('/checkout', methods=['GET', 'POST'])
 def print_items():
+    print("PRINT")
     global shoppingCart
     cart_items = []
     for item, quantity in shoppingCart:
         cart_items.append(f"Item: {item.get_name()}, Quantity: {quantity}")
+    print("cart_items:", cart_items)  # Add this line to check the content of cart_items
     return render_template('checkout.html', items=cart_items)
+
+
 
 def removeItem():
     prod = 0
 def totalPrice():    
-    prod =0
+    print("TOTAL PRICE")
 
-def checkOut():
-    prod =0
 
 def run_docker_container(image_name, port_mapping):
     # Create a Docker client using the environment variables or default settings
