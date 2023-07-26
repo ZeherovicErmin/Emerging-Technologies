@@ -1,11 +1,9 @@
-from flask import Flask, render_template, jsonify, request
-import json
-import docker
+from flask import Flask, render_template, request
 import requests
 
 app = Flask(__name__)
 
-#Add a item class????
+# Add an item class
 class Item:
     def __init__(self, name, price):
         self.name = name
@@ -17,14 +15,6 @@ class Item:
     def get_price(self):
         return self.price
 
-    def set_name(self, name):
-        self.name = name
-
-    def set_price(self, price):
-        self.price = price
-    
-
-
 shoppingCart = []
 
 @app.route('/', methods=['GET', 'POST'])
@@ -34,32 +24,29 @@ def main():
         action = request.form.get('action')
         if action == '1':
             addItem()
-            return render_template('index.html', message="Add an Item")  
+            return render_template('index.html', message="Add an Item")
         elif action == '2':
             removeItem()
-            return render_template('index.html', message="Remove an Item")  
+            return render_template('index.html', message="Remove an Item")
         elif action == '3':
-            totalPrice()
-            return render_template('index.html', message="Display Total")  
+            price = totalPrice()
+            return render_template('index.html', message=f"Total: ${price:.2f}")
         elif action == '4':
-            print_items()
-            return render_template('index.html', message="Proceed to Checkout")  
+            return checkout()
         else:
             return render_template('index.html', message="Invalid action")
-               
     else:
-        return render_template('index.html', message="")  
+        return render_template('index.html', message="")
 
-#Display addItem.html
+# Display addItem.html
 @app.route('/shoppingcart', methods=['GET'])
 def showAddItemPage():
     return render_template('addItem.html')
-#add a product to the shopping cart. If the item already exists, increiment.
+
+# Add a product to the shopping cart. If the item already exists, increment.
 @app.route('/shoppingcart', methods=['POST'])
 def addItem():
-    print("BEINS")
     global shoppingCart
-    container = run_docker_container('hl5846/products', {'80/tcp': 80})
     chosenItem = request.form.get('chosenItem')
     if chosenItem == '1':
         item = get_products_from_products_microservice("Laptop")
@@ -77,18 +64,13 @@ def addItem():
         return render_template('addItem.html', message="Failed to add item")
 
     addToCart(item)
-    # Remove the container after finishing the addItem function
-    container.stop()
-    container.remove()
     return render_template('addItem.html', message="Item has been added")
-
-
 
 def addToCart(item):
     global shoppingCart
     item_name = item['productName']
     item_price = item['productPrice']
-    print("NAME", item_name)
+
     # Create an instance of the Item class with the parsed information
     item_instance = Item(item_name, item_price)
 
@@ -101,38 +83,42 @@ def addToCart(item):
         # If the item doesn't exist in the shopping cart, add it
         shoppingCart.append((item_instance, 1))
 
+@app.route('/checkout', methods=['GET'])
+def checkout():
+    return render_template('checkout.html', items=shoppingCart)
 
-@app.route('/checkout', methods=['GET', 'POST'])
-def print_items():
-    global shoppingCart
-    cart_items = []
-    for item, quantity in shoppingCart:
-        cart_items.append(f"Item: {item.get_name()}, Quantity: {quantity}")
-    print("cart_items:", cart_items)  # Add this line to check the content of cart_items
-    return render_template('checkout.html', items=cart_items)
+# Display removeItem.html
+@app.route('/removeshoppingcart', methods=['GET'])
+def showRemoveItemPage():
+    return render_template('removeItem.html')
 
-
-
+# Remove a product from the shopping cart.
+@app.route('/removeshoppingcart', methods=['POST'])
 def removeItem():
-    prod = 0
+    global shoppingCart
+    chosenItem = request.form.get('chosenItem')
+    if chosenItem:
+        removeFromList(chosenItem)
+        return render_template('removeItem.html', message="Item has been removed")
+    else:
+        return render_template('removeItem.html', message="Failed to remove item")
 
-def total_price():
+def removeFromList(chosenItem):
+    global shoppingCart
+    for i, (item, quantity) in enumerate(shoppingCart):
+        if item.name == chosenItem:
+            if quantity > 1:
+                shoppingCart[i] = (item, quantity - 1)
+            else:
+                shoppingCart.pop(i)
+            break
+
+def totalPrice():
     global shoppingCart
     total = 0
     for item, quantity in shoppingCart:
         total += item.get_price() * quantity
     return total
-
-def run_docker_container(image_name, port_mapping):
-    # Create a Docker client using the environment variables or default settings
-    client = docker.from_env()
-
-    # Replace port 80 with a different available port, such as 8080
-    container = client.containers.run(image_name, detach=True, ports={'80/tcp': 80})
-
-    # Return the container instance, in case you need to interact with it later
-    return container
-
 
 def get_products_from_products_microservice(productName):
     productsUrl = f'http://localhost:80/product?name={productName}'
@@ -146,7 +132,6 @@ def get_products_from_products_microservice(productName):
             return "Sorry, this product does not exist."
 
     except requests.exceptions.RequestException as e:
-        # Handle any errors that occur during the HTTP request
         return "Error connecting to the microservice: " + str(e)
 
 
