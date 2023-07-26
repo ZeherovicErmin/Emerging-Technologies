@@ -135,6 +135,25 @@ def get_specific_product():
     return jsonify(found_products)
 
 
+#find product details by product ID
+@app.route('/product/<productID>', methods=['GET'])
+def get_product_by_id():
+    product_id = request.view_args('productID')
+    products = loadJson()
+    found_products = []
+    for product in products:
+        if product.getProductID() == product_id:
+            found_products.append({
+                'productID': product.getProductID(),
+                'productName': product.getProductName(),
+                'productPrice': product.getProductPrice(),
+                'productRating': product.getProductRating(),
+                'productDesc': product.getProductDesc(),
+                'productImage': product.getProductImage()
+            })
+    return jsonify(found_products)
+
+
 def displayProducts(products):
     product_info = []
     for product in products:
