@@ -57,35 +57,38 @@ def showAddItemPage():
 #add a product to the shopping cart. If the item already exists, increiment.
 @app.route('/shoppingcart', methods=['POST'])
 def addItem():
+    print("BEINS")
     global shoppingCart
     container = run_docker_container('hl5846/products', {'80/tcp': 80})
-    if request.method == 'POST':
-        chosenItem = request.form.get('chosenItem')
-        if chosenItem == '1':
-            item = get_products_from_products_microservice("Laptop")
-        elif chosenItem == '2':
-            item = get_products_from_products_microservice("Cookware Set")
-        elif chosenItem == '3':
-            item = get_products_from_products_microservice("Hiking Backpack")
-        elif chosenItem == '4':
-            item = get_products_from_products_microservice("Smartphone")
-        elif chosenItem == '5':
-            item = get_products_from_products_microservice("Fitness Tracker")
-        elif chosenItem == '6':
-            item = get_products_from_products_microservice("Scented Candle Set")
-        else:
-            return render_template('addItem.html', message="Failed to add item")
+    chosenItem = request.form.get('chosenItem')
+    if chosenItem == '1':
+        item = get_products_from_products_microservice("Laptop")
+    elif chosenItem == '2':
+        item = get_products_from_products_microservice("Cookware Set")
+    elif chosenItem == '3':
+        item = get_products_from_products_microservice("Hiking Backpack")
+    elif chosenItem == '4':
+        item = get_products_from_products_microservice("Smartphone")
+    elif chosenItem == '5':
+        item = get_products_from_products_microservice("Fitness Tracker")
+    elif chosenItem == '6':
+        item = get_products_from_products_microservice("Scented Candle Set")
+    else:
+        return render_template('addItem.html', message="Failed to add item")
 
     addToCart(item)
-    return render_template('addItem.html', message="Item has been added")
+    # Remove the container after finishing the addItem function
     container.stop()
     container.remove()
+    return render_template('addItem.html', message="Item has been added")
+
+
 
 def addToCart(item):
     global shoppingCart
     item_name = item['productName']
     item_price = item['productPrice']
-    
+    print("NAME", item_name)
     # Create an instance of the Item class with the parsed information
     item_instance = Item(item_name, item_price)
 
@@ -101,7 +104,6 @@ def addToCart(item):
 
 @app.route('/checkout', methods=['GET', 'POST'])
 def print_items():
-    print("PRINT")
     global shoppingCart
     cart_items = []
     for item, quantity in shoppingCart:
@@ -113,22 +115,26 @@ def print_items():
 
 def removeItem():
     prod = 0
-def totalPrice():    
-    print("TOTAL PRICE")
 
+def total_price():
+    global shoppingCart
+    total = 0
+    for item, quantity in shoppingCart:
+        total += item.get_price() * quantity
+    return total
 
 def run_docker_container(image_name, port_mapping):
     # Create a Docker client using the environment variables or default settings
     client = docker.from_env()
-    
-    # Run the Docker container with the specified image name and port mapping
-    container = client.containers.run(image_name, detach=True, ports=port_mapping)
-    
+
+    # Replace port 80 with a different available port, such as 8080
+    container = client.containers.run(image_name, detach=True, ports={'80/tcp': 80})
+
     # Return the container instance, in case you need to interact with it later
     return container
 
-def get_products_from_products_microservice(productName):
 
+def get_products_from_products_microservice(productName):
     productsUrl = f'http://localhost:80/product?name={productName}'
     try:
         response = requests.get(productsUrl)
@@ -142,6 +148,7 @@ def get_products_from_products_microservice(productName):
     except requests.exceptions.RequestException as e:
         # Handle any errors that occur during the HTTP request
         return "Error connecting to the microservice: " + str(e)
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=10)
