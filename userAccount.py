@@ -17,13 +17,14 @@ def user():
         data = request.form
         if 'username' in data and 'password' in data:
             # Check if the username is already taken
-            if any(user['username'] == data['username'] for user in users):
-                return jsonify({'message': 'Username already taken'}), 400
+            if any(user['username'] == data['username'] for user in userList):
+                return jsonify({'message': 'That Username is already taken'}), 400
 
+            # Creating a new user 
             new_user = {
-                'id': len(userList) + 1,
-                'username': data['username'],
-                'password': data['password']
+                'Account #': len(userList) + 1,
+                'Username': data['username'],
+                'Password': data['password']
             }
             userList.append(new_user)
             return jsonify({'message': 'User created successfully'}), 201
