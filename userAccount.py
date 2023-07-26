@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request, render_template
+from flask import Flask, jsonify, request, render_template, json
 app = Flask(__name__)
 
 # An Application that utilizes python and HTML to create a user registration/login system.
@@ -7,6 +7,12 @@ app = Flask(__name__)
 # An Array to store any created users information 
 userList = []
 
+
+# Creating a json file to store the data from our array
+storage = "userList.json"
+
+with open(storage, "w") as json_file:
+    json.dump(userList, json_file)
 
 # We will use the /user with methods of POST and GET to either get user information or display it respectively
 @app.route('/user', methods=['GET', 'POST'])
@@ -30,6 +36,7 @@ def user():
             return jsonify({'message': 'User created successfully'}), 201
         else:
             return jsonify({'message': 'Username and password are required'}), 400
+
 
 @app.route('/', methods=['GET'])
 def index():
