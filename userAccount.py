@@ -8,7 +8,7 @@ app = Flask(__name__)
 # An Array to store any created users information 
 userList = []
 
-# Creating a json file to store the data from our array
+# Creating a variable to store the json filepath
 storage = "userList.json"
 
 # Creating a userList.json file if it doesn't exist already
