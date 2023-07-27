@@ -17,22 +17,21 @@ with open(storage, "r") as json_file:
 def login():
     data = request.form
     
+
     if 'username' in data and 'password' in data:
+        
         
         # Test cases for logon services
         
         for user in userList:
             
             # All correct
-            if user['Username'] == data['username'] and user['Password'] == data['password']:
+            if user['Username'] == data.get('username') and user['Password'] == data.get('password'):
                 return jsonify({'message': 'Login Succesful!'},200)
-
-            # Incorrect password
-            if user['Password'] != data['password']:
-                return jsonify({'message': 'Incorrect Password.'},401) 
+             
             
-    # Return statement that states user does not exist        
-    return jsonify({'message': 'User with that Username does not exist.'},401) 
+    # Return statement if username/password is incorrect       
+    return jsonify({'message': 'Username or password is incorrect.'},401) 
     
          
                 
