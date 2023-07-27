@@ -1,4 +1,5 @@
 from flask import Flask, jsonify, request, render_template, json
+import os
 app = Flask(__name__)
 
 # An Application that utilizes python and HTML to create a user registration/login system.
@@ -10,7 +11,11 @@ userList = []
 # Creating a json file to store the data from our array
 storage = "userList.json"
 
-    
+# Creating a userList.json file if it doesn't exist already
+if not os.path.exists(storage):
+    with open(storage, "w") as json_file:
+        json.dump([],json_file)
+            
 # Populating our array with users already created
 with open(storage, "r") as json_file:
     userList = json.load(json_file)
@@ -25,7 +30,13 @@ def user():
     elif request.method == 'POST':
         data = request.form
         if 'username' in data and 'password' in data:
-
+            
+            # Ensuring duplicate usernames aren't created
+            for user in userList:
+                if user['Username'] == data['username']:
+                    return jsonify({'message': 'Username already taken!'},400)
+                
+                
             # Creating a new user 
             new_user = {
                 'Account #': len(userList) + 1,
