@@ -1,11 +1,12 @@
 import random
+import json
 from flask import Flask, request, jsonify, make_response, render_template
 
 app = Flask(__name__)
 
 
 @app.route("/Risk_Ratings")
-def booking():
+def ratings():
     return render_template('Risk_Ratings.html')
 
 
