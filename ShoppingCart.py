@@ -87,7 +87,6 @@ def addToCart(item):
             shoppingCart[i] = (cart_item, quantity + 1)
             break
     else:
-        # If the item doesn't exist in the shopping cart, add it
         shoppingCart.append((item_instance, 1))
     
 
@@ -118,20 +117,18 @@ def showRemoveItemPage():
 def removeItem():
     global shoppingCart
     chosenItem = request.form.get('chosenItem')
-    print("cHONES IERM ", chosenItem)
     if chosenItem:
         removeFromList(chosenItem)
         return render_template('removeItem.html', message="Item has been removed")
     else:
         return render_template('removeItem.html', message="Failed to remove item")
 
+#if item has more than one, decriment. Other wise outright remove from list.
 def removeFromList(chosenItem):
     global shoppingCart
-    print("check1")
     for i, (item, quantity) in enumerate(shoppingCart):
         if item.ID == chosenItem:
             if quantity > 1:
-                print("cehck")
                 shoppingCart[i] = (item, quantity - 1)
             else:
                 shoppingCart.pop(i)
@@ -144,6 +141,8 @@ def totalPrice():
         total += item.get_price() * quantity
     return total
 
+#NOTE: for this, have the products.py application running on port 80, if needed you can change the productsUrl to whatever else link.
+#If you do change the url, make sure the fields match such as productName, productId, and productPrice.
 def get_products_from_products_microservice(productName):
     productsUrl = f'http://localhost:80/product?name={productName}'
     try:
