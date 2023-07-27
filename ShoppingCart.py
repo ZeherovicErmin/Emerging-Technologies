@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, jsonify
 import requests
 import json
 import urllib.request
@@ -69,16 +69,16 @@ def addItem():
 
     addToCart(item)
     return render_template('addItem.html', message="Item has been added")
+    
 
 def addToCart(item):
     global shoppingCart
-    print("XDXD")
+
     product_info = item[0]
     item_name = product_info['productName']
     item_price = product_info['productPrice']
     item_ID = product_info['productID']
 
-    print("NAME" , item_name, " Price ", item_price, " ID ", item_ID)
     item_instance = Item(item_name, item_price, item_ID)
 
     # Check if the item already exists in the shopping cart
@@ -89,10 +89,24 @@ def addToCart(item):
     else:
         # If the item doesn't exist in the shopping cart, add it
         shoppingCart.append((item_instance, 1))
+    
 
-@app.route('/checkout', methods=['GET'])
+@app.route('/checkout', methods=['GET', 'POST'])
 def checkout():
-    return render_template('checkout.html', items=shoppingCart)
+    global shoppingCart
+
+    items_list = []
+    for item, quantity in shoppingCart:
+        item_info = {
+            'name': item.get_name(),
+            'price': item.get_price(),
+            'quantity': quantity
+        }
+        items_list.append(item_info)
+
+    return jsonify(items_list)
+
+
 
 # Display removeItem.html
 @app.route('/removeshoppingcart', methods=['GET'])
@@ -115,6 +129,7 @@ def removeFromList(chosenItem):
     for i, (item, quantity) in enumerate(shoppingCart):
         if item.name == chosenItem:
             if quantity > 1:
+                print("cehck")
                 shoppingCart[i] = (item, quantity - 1)
             else:
                 shoppingCart.pop(i)
@@ -143,8 +158,6 @@ def get_products_from_products_microservice(productName):
             
     except requests.exceptions.RequestException as e:
         return "Error connecting to the microservice: " + str(e)
-
-
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=10)
