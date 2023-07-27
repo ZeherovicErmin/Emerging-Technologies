@@ -118,6 +118,7 @@ def showRemoveItemPage():
 def removeItem():
     global shoppingCart
     chosenItem = request.form.get('chosenItem')
+    print("cHONES IERM ", chosenItem)
     if chosenItem:
         removeFromList(chosenItem)
         return render_template('removeItem.html', message="Item has been removed")
@@ -126,8 +127,9 @@ def removeItem():
 
 def removeFromList(chosenItem):
     global shoppingCart
+    print("check1")
     for i, (item, quantity) in enumerate(shoppingCart):
-        if item.name == chosenItem:
+        if item.ID == chosenItem:
             if quantity > 1:
                 print("cehck")
                 shoppingCart[i] = (item, quantity - 1)
