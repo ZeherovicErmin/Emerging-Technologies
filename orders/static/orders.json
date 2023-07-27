@@ -21,7 +21,7 @@
     {
       "orderID": "DEF321",
       "productID": "P987",
-      "userID": "U654",
+      "userID": "U456",
       "quantity": 3
     },
     {
@@ -41,6 +41,12 @@
       "productID": "P986",
       "quantity": 15,
       "userID": "U144"
+    },
+    {
+      "orderID": "O165",
+      "productID": "P234",
+      "quantity": 15,
+      "userID": "U776"
     }
   ]
 }

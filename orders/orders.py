@@ -44,25 +44,37 @@ def main():
 #fetch orders based on order ID
 @app.route('/orders/<orderID>', methods=['GET'])
 def findByOrderID(orderID):
+    orders_info=[]
     orders = loadJsonAsList()
     orderID = request.view_args['orderID']
     for order in orders:
         print(order.getOrderID())
+        print(type(order))
         if(order.getOrderID()==orderID):
-            return displayOrders(order)
+           orders_info.append(order)
 
-    return "No such orders found with  order ID :" + orderID
+    if (len(orders_info) > 0):
+        return displayOrders(orders_info), 200
+    else:
+        return "No order details found with order ID :" + orderID
+
 
 #fetch order based on userID
 @app.route('/orders/user/<userID>', methods=['GET'])
 def findByUserID(userID):
+    orders_info = []
     orders = loadJsonAsList()
     userID = request.view_args['userID']
     for order in orders:
         print(order.getOrderID())
-        if(order.getUserID()==userID):
-            return displayOrders(order)
-    return "No order details found for user associated with user ID :" + userID
+        print(type(order))
+        if (order.getUserID() == userID):
+            orders_info.append(order)
+
+    if(len(orders_info)>0):
+        return displayOrders(orders_info), 200
+    else:
+        return "No order details found for user associated with user ID :" + userID
 
 #add new order
 @app.route('/orders/addNewOrder', methods=['POST'])
@@ -83,23 +95,15 @@ def addNewOrder():
 def displayOrders(orders):
     order_info = []
 
-    if (type(orders) == list.__class__):
-        for order in orders:
-            order_info.append({
-                'orderID': order.getOrderID(),
-                'productID': order.getProductID(),
-                'userID': order.getUserID(),
-                'quantity': order.getQuantity()
-
-            })
-    else:
+    for order in orders:
         order_info.append({
-            'orderID': orders.getOrderID(),
-            'productID': orders.getProductID(),
-            'userID': orders.getUserID(),
-            'quantity': orders.getQuantity()
+            'orderID': order.getOrderID(),
+            'productID': order.getProductID(),
+            'userID': order.getUserID(),
+            'quantity': order.getQuantity()
 
         })
+
     return order_info
 
 

@@ -137,8 +137,8 @@ def get_specific_product():
 
 #find product details by product ID
 @app.route('/product/<productID>', methods=['GET'])
-def get_product_by_id():
-    product_id = request.view_args('productID')
+def get_product_by_id(productID):
+    product_id = request.view_args['productID']
     products = loadJson()
     found_products = []
     for product in products:
@@ -168,4 +168,4 @@ def displayProducts(products):
     return product_info
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=80)
+    app.run(host='0.0.0.0', port=4000)
