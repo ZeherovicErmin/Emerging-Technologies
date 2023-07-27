@@ -1,19 +1,24 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect
 import requests
-
+import json
+import urllib.request
 app = Flask(__name__)
 
 # Add an item class
 class Item:
-    def __init__(self, name, price):
+    def __init__(self, name, price, ID):
         self.name = name
         self.price = price
+        self.ID = ID
 
     def get_name(self):
         return self.name
 
     def get_price(self):
         return self.price
+    
+    def get_id(self):
+        return self.ID
 
 shoppingCart = []
 
@@ -42,7 +47,6 @@ def main():
 @app.route('/shoppingcart', methods=['GET'])
 def showAddItemPage():
     return render_template('addItem.html')
-
 # Add a product to the shopping cart. If the item already exists, increment.
 @app.route('/shoppingcart', methods=['POST'])
 def addItem():
@@ -51,15 +55,15 @@ def addItem():
     if chosenItem == '1':
         item = get_products_from_products_microservice("Laptop")
     elif chosenItem == '2':
-        item = get_products_from_products_microservice("Cookware Set")
+        item = get_products_from_products_microservice("Cookware%20Set")
     elif chosenItem == '3':
-        item = get_products_from_products_microservice("Hiking Backpack")
+        item = get_products_from_products_microservice("Hiking%20Backpack")
     elif chosenItem == '4':
         item = get_products_from_products_microservice("Smartphone")
     elif chosenItem == '5':
-        item = get_products_from_products_microservice("Fitness Tracker")
+        item = get_products_from_products_microservice("Fitness%20Tracker")
     elif chosenItem == '6':
-        item = get_products_from_products_microservice("Scented Candle Set")
+        item = get_products_from_products_microservice("Scented%20Candle%20Set")
     else:
         return render_template('addItem.html', message="Failed to add item")
 
@@ -68,15 +72,18 @@ def addItem():
 
 def addToCart(item):
     global shoppingCart
-    item_name = item['productName']
-    item_price = item['productPrice']
+    print("XDXD")
+    product_info = item[0]
+    item_name = product_info['productName']
+    item_price = product_info['productPrice']
+    item_ID = product_info['productID']
 
-    # Create an instance of the Item class with the parsed information
-    item_instance = Item(item_name, item_price)
+    print("NAME" , item_name, " Price ", item_price, " ID ", item_ID)
+    item_instance = Item(item_name, item_price, item_ID)
 
     # Check if the item already exists in the shopping cart
     for i, (cart_item, quantity) in enumerate(shoppingCart):
-        if cart_item.name == item_instance.name:
+        if cart_item.ID == item_instance.ID:
             shoppingCart[i] = (cart_item, quantity + 1)
             break
     else:
@@ -128,11 +135,15 @@ def get_products_from_products_microservice(productName):
         if response.status_code == 200:
             product = response.json()
             return product
-        else:
-            return "Sorry, this product does not exist."
 
+        elif response.status_code == 404:
+            return "Product not found."
+        else:
+            return f"Error: {response.status_code} - {response.reason}"
+            
     except requests.exceptions.RequestException as e:
         return "Error connecting to the microservice: " + str(e)
+
 
 
 if __name__ == '__main__':

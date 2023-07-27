@@ -6,10 +6,7 @@
 <body>
     <h1>Checkout</h1>
     <ul>
-        {% for item in items %}
-            <li>check</li>
-            <li>{{ item }}</li>
-        {% endfor %}
+        <li>{{ item }}</li>
     </ul>
     <form action="/checkout" method="post">
         <button><a href="/">back</a></button>
