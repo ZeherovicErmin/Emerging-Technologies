@@ -23,27 +23,24 @@ def login():
         
         for user in userList:
             
-            #User doesn't exist
-            if user['Username'] != data['username']:
-                return jsonify({'message': 'User with that Username does not exist.'},401) 
-            
+            # All correct
+            if user['Username'] == data['username'] and user['Password'] == data['password']:
+                return jsonify({'message': 'Login Succesful!'},200)
+
             # Incorrect password
             if user['Password'] != data['password']:
                 return jsonify({'message': 'Incorrect Password.'},401) 
             
-            # All correct
-            if user['Username'] == data['username'] and user['Password'] == data['password']:
-                return jsonify({'message': 'Login Succesful!'},200) 
+    # Return statement that states user does not exist        
+    return jsonify({'message': 'User with that Username does not exist.'},401) 
+    
+         
                 
                 
-
-
-
-
-
-
-
-
+# Using an Html with a template to display a front end for login
+@app.route('/', methods=['GET'])
+def loginT():
+    return render_template('login.html')
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)
