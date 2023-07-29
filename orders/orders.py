@@ -108,19 +108,19 @@ def displayOrders(orders):
 
 
 def load_json():
-    with open("./static/orders.json", "r") as file:
+    with open("./orders/static/orders.json", "r") as file:
         data = json.load(file)
     return data
 
 
 def save_json(data):
-    with open("./static/orders.json", "w") as file:
+    with open("./orders/static/orders.json", "w") as file:
         json.dump(data, file, indent=2)
 
 
 def loadJsonAsList():
     # Read JSON file
-    with open('./static/orders.json', 'r') as file:
+    with open("./orders/static/orders.json", 'r') as file:
         data = json.load(file)
 
     # Access JSON file into array and create a list to host parsed info
