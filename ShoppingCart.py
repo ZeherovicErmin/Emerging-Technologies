@@ -15,7 +15,7 @@ def main():
 
 def get_products_from_products_microservice(productName):
     products_url = 'http://127.0.0.1:80/product?name=' + productName 
-    response = requests.get(products_url)
+    response = request.get(products_url)
 
     if response.status_code == 200:
         products_data = response.json()
