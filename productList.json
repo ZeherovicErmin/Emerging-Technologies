@@ -14,7 +14,7 @@
       "isOther": false
     },
     {
-      "productID": "456",
+      "productID": "P123",
       "productName": "Cookware Set",
       "productPrice": 89.99,
       "productRating": 4.2,
@@ -27,7 +27,7 @@
       "isOther": false
     },
     {
-      "productID": "789",
+      "productID": "P987",
       "productName": "Hiking Backpack",
       "productPrice": 49.99,
       "productRating": 4.8,
@@ -40,7 +40,7 @@
       "isOther": false
     },
     {
-      "productID": "101",
+      "productID": "P234",
       "productName": "Smartphone",
       "productPrice": 799.99,
       "productRating": 4.7,
