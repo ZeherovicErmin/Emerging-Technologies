@@ -1,7 +1,7 @@
 {
   "products": [
     {
-      "productID": "123",
+      "productID": "012345",
       "productName": "Laptop",
       "productPrice": 999.99,
       "productRating": 4.5,
@@ -46,7 +46,7 @@
       "productRating": 4.7,
       "productDesc": "High-end smartphone with advanced features",
       "productImage": "smartphone.jpg",
-      "isComputer": false,
+      "isComputer": true,
       "isKitchenware": false,
       "isOutdoor": false,
       "isHygiene": false,
@@ -61,7 +61,7 @@
       "productImage": "fitnesstracker.jpg",
       "isComputer": false,
       "isKitchenware": false,
-      "isOutdoor": false,
+      "isOutdoor": true,
       "isHygiene": false,
       "isOther": false
     },
@@ -76,7 +76,90 @@
       "isKitchenware": false,
       "isOutdoor": false,
       "isHygiene": false,
+      "isOther": true
+    },
+    {
+      "productID": "P456",
+      "productName": "Wireless Earbuds",
+      "productPrice": 79.99,
+      "productRating": 4.5,
+      "productDesc": "Enjoy music on the go with these high-quality wireless earbuds",
+      "productImage": "earbuds.jpg",
+      "isComputer": false,
+      "isKitchenware": false,
+      "isOutdoor": false,
+      "isHygiene": false,
+      "isOther": true
+      },
+  
+      {
+      "productID": "P789",
+      "productName": "Gaming Mouse",
+      "productPrice": 49.99,
+      "productRating": 4.7,
+      "productDesc": "Enhance your gaming performance with this ergonomic gaming mouse",
+      "productImage": "gamingmouse.jpg",
+      "isComputer": true,
+      "isKitchenware": false,
+      "isOutdoor": false,
+      "isHygiene": false,
       "isOther": false
-    }
+      },
+  
+      {
+      "productID": "P123",
+      "productName": "Robot Vacuum Cleaner",
+      "productPrice": 299.99,
+      "productRating": 4.9,
+      "productDesc": "Keep your home clean effortlessly with this smart robot vacuum cleaner",
+      "productImage": "robotvacuum.jpg",
+      "isComputer": false,
+      "isKitchenware": true,
+      "isOutdoor": false,
+      "isHygiene": false,
+      "isOther": false
+      },
+
+      {
+      "productID": "P987",
+      "productName": "Portable Bluetooth Speaker",
+      "productPrice": 69.99,
+      "productRating": 4.6,
+      "productDesc": "Listen to your favorite tunes anywhere with this portable Bluetooth speaker",
+      "productImage": "bluetoothspeaker.jpg",
+      "isComputer": false,
+      "isKitchenware": false,
+      "isOutdoor": true,
+      "isHygiene": false,
+      "isOther": false
+      },
+  
+      {
+      "productID": "P789",
+      "productName": "Virtual Reality Headset",
+      "productPrice": 199.99,
+      "productRating": 4.4,
+      "productDesc": "Immerse yourself in virtual worlds with this advanced VR headset",
+      "productImage": "vrheadset.jpg",
+      "isComputer": true,
+      "isKitchenware": false,
+      "isOutdoor": false,
+      "isHygiene": false,
+      "isOther": false
+      },
+  
+      {
+      "productID": "P986",
+      "productName": "High-Speed USB Flash Drive",
+      "productPrice": 29.99,
+      "productRating": 4.8,
+      "productDesc": "Transfer files quickly and securely with this high-speed USB flash drive",
+      "productImage": "usbflashdrive.jpg",
+      "isComputer": true,
+      "isKitchenware": false,
+      "isOutdoor": false,
+      "isHygiene": false,
+      "isOther": true
+      }
   ]
 }

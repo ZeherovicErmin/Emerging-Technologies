@@ -25,6 +25,8 @@
       "quantity": 3
     },
     {
+      "username" : "testUser",
+      "total" : "$10,600",
       "orderID": "O12345",
       "productID": "P789",
       "quantity": 10,

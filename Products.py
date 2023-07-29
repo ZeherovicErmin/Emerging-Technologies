@@ -152,6 +152,7 @@ def get_product_by_id(productID):
                 'productImage': product.getProductImage()
             })
     return jsonify(found_products)
+    
 
 
 def displayProducts(products):

@@ -1,0 +1,24 @@
+from flask import Flask, jsonify, request, render_template, json
+import os
+app = Flask(__name__)
+
+# An application to simulate shipping info
+
+
+@app.route('/user/shipping', methods=['POST'])
+
+def shipping():
+    data = request.form
+    return jsonify({'message': 'Shipping Info Saved Succesful!'},200)
+
+             
+                
+                
+# Using an Html with a template to display a front end for login
+@app.route('/', methods=['GET'])
+def shippingT():
+    return render_template('shipping.html')
+
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000, debug=True)

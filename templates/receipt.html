@@ -5,15 +5,20 @@
     <title>Download / Email / Print your Receipt!</title>
 </head>
 <body>
+    <tr>
     <h1>Receipt</h1>
-    <p>Customer Name:</p>
-    <p>Date Purchased:</p>
-    <p>Total Items Purchased:</p>
-    <p>Total Amount:</p>
+    <p>Username: {{ orders.username }}</p>
+    <p>Date Purchased: 08/02/2023</p>
+    <p>Total Amount: {{ orders.total }}</p>
+    <p>Order ID: {{ orders.orderID }}</p>
+    <p>Product ID: {{ orders.productID }}</p>
+    <p>User ID: {{ orders.userID }}</p>
+    <p>Quantity: {{ orders.quantity }}</p>
+
+    </tr>
 
     <br>
-    <button>Print Receipt</button>
-    <button>Download Receipt</button>
-    <button>Email Receipt</button>
+
+    <br>
 </body>
 </html>
