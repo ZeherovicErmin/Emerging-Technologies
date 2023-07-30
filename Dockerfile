@@ -3,4 +3,4 @@ WORKDIR /Emerging-Technologies
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
-CMD ["python", "emergingFront.py"]
+CMD ["python", "emergingfront.py"]
