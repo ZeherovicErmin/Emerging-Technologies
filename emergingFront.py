@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 @app.route("/Home", methods=['GET'])
 def ratings():
-    return render_template('emergingFront.html')
+    return render_template('emergingfront.html')
 
 
 if __name__ == '__main__':
