@@ -4,9 +4,9 @@ from flask import Flask, request, jsonify, make_response, render_template
 app = Flask(__name__)
 
 
-@app.route("/Receipt", methods=['GET'])
+@app.route("/Home", methods=['GET'])
 def ratings():
-    return render_template('receipt.html')
+    return render_template('emergingfront.html')
 
 
 if __name__ == '__main__':
