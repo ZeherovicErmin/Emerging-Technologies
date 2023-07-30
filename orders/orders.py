@@ -48,8 +48,6 @@ def findByOrderID(orderID):
     orders = loadJsonAsList()
     orderID = request.view_args['orderID']
     for order in orders:
-        print(order.getOrderID())
-        print(type(order))
         if(order.getOrderID()==orderID):
            orders_info.append(order)
 
@@ -66,8 +64,6 @@ def findByUserID(userID):
     orders = loadJsonAsList()
     userID = request.view_args['userID']
     for order in orders:
-        print(order.getOrderID())
-        print(type(order))
         if (order.getUserID() == userID):
             orders_info.append(order)
 
