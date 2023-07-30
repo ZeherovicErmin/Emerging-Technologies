@@ -5,24 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c9da71d1-cf0d-4290-8d37-da2afe948e65" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/userAccount/config.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Emerging-Technologies.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Emerging-Technologies.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Products.py" beforeDir="false" afterPath="$PROJECT_DIR$/products/Products.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ShoppingCart.py" beforeDir="false" afterPath="$PROJECT_DIR$/shoppingCart/ShoppingCart.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config.ini" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/orders/orders.py" beforeDir="false" afterPath="$PROJECT_DIR$/orders/orders.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/productList.json" beforeDir="false" afterPath="$PROJECT_DIR$/products/productList.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/receipt.py" beforeDir="false" afterPath="$PROJECT_DIR$/receipt/receipt.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/addItem.html" beforeDir="false" afterPath="$PROJECT_DIR$/shoppingCart/templates/addItem.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/shoppingCart/templates/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/userLogon/templates/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/receipt.html" beforeDir="false" afterPath="$PROJECT_DIR$/receipt/templates/receipt.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/removeItem.html" beforeDir="false" afterPath="$PROJECT_DIR$/shoppingCart/templates/removeItem.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/userAccount.py" beforeDir="false" afterPath="$PROJECT_DIR$/userAccount/userAccount.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/userList.json" beforeDir="false" afterPath="$PROJECT_DIR$/userAccount/userList.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/userLogon.py" beforeDir="false" afterPath="$PROJECT_DIR$/userLogon/userLogon.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/paymentProcessor.py" beforeDir="false" afterPath="$PROJECT_DIR$/payments/paymentProcessor.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/userAccount/config.ini" beforeDir="false" afterPath="$PROJECT_DIR$/userAccount/config.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/userAccount/userAccount.py" beforeDir="false" afterPath="$PROJECT_DIR$/userAccount/userAccount.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/userAccount/userList.json" beforeDir="false" afterPath="$PROJECT_DIR$/userAccount/userList.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,11 +34,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/payments" />
+      <recent name="$PROJECT_DIR$/userAccount/templates" />
       <recent name="$PROJECT_DIR$/userAccount" />
       <recent name="$PROJECT_DIR$/shoppingCart/templates" />
       <recent name="$PROJECT_DIR$/shoppingCart" />
-      <recent name="$PROJECT_DIR$/receipt/templates" />
-      <recent name="$PROJECT_DIR$/Home/templates" />
     </key>
   </component>
   <component name="RunManager" selected="Python.user">

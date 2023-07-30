@@ -32,10 +32,11 @@ with open(storage, "r") as json_file:
 # We will use the /user with methods of POST and GET to either get user information or display it respectively
 @app.route('/user', methods=['GET', 'POST'])
 def user():
+    id=100;
     if request.method == 'GET':
         return jsonify(userList), 200
     elif request.method == 'POST':
-        data = request.form
+        data = request.get_json()
         if 'username' in data and 'password' in data:
             
             # Ensuring duplicate usernames aren't created
@@ -43,12 +44,12 @@ def user():
                 if user['Username'] == data['username']:
                     return jsonify({'message': 'Username already taken!'},400)
                 
-                
+            id+=1;
             # Creating a new user 
             new_user = {
-                'Account #': len(userList) + 1,
-                'Username': data['username'],
-                'Password': data['password']
+                'userID': "U"+ str(id),
+                'username': data['username'],
+                'password': data['password']
             }
             userList.append(new_user)
             
@@ -72,6 +73,12 @@ def getAllOrderDetails(userID):
     print(str(orders_url)+str(userID))
     response = requests.get(orders_url+userID)
 
+    payments_url = config.get('Settings', 'payments_url')
+    payment_response = requests.get(payments_url+userID)
+    payment_info = payment_response.json()
+    print("payment information")
+    print(payment_info)
+
     if(response.status_code==200):
         orders_info=response.json()
         for order in orders_info:
@@ -85,6 +92,9 @@ def getAllOrderDetails(userID):
             products_info.append(response.json())
             print(type(products_info))
 
+
+
+
         for order in orders_info:
             print(type(order))
             if 'productID' in order:
@@ -97,8 +107,11 @@ def getAllOrderDetails(userID):
                         #calculate total price and add it to the json
                         order['Total_price'] = float(product[0].get('productPrice')) * float(order.get('quantity'))
                         del order['productID']
+                        order['Payment_details'] = payment_info
 
         print(len(orders_info))
+
+
         return orders_info
     else:
         return f"Error: {response.status_code} - {response.text}"
