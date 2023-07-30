@@ -6,10 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="c9da71d1-cf0d-4290-8d37-da2afe948e65" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/paymentProcessor.py" beforeDir="false" afterPath="$PROJECT_DIR$/payments/paymentProcessor.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/payments/userPaymentList" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/risk_ratings.py" beforeDir="false" afterPath="$PROJECT_DIR$/ratings/risk_ratings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tempCodeRunnerFile.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/payment.html" beforeDir="false" afterPath="$PROJECT_DIR$/payments/templates/payment.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/tempCodeRunnerFile.html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/userAccount/config.ini" beforeDir="false" afterPath="$PROJECT_DIR$/userAccount/config.ini" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/userAccount/userAccount.py" beforeDir="false" afterPath="$PROJECT_DIR$/userAccount/userAccount.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/userAccount/userList.json" beforeDir="false" afterPath="$PROJECT_DIR$/userAccount/userList.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,11 +37,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/ratings" />
+      <recent name="$PROJECT_DIR$/payments/templates" />
       <recent name="$PROJECT_DIR$/payments" />
       <recent name="$PROJECT_DIR$/userAccount/templates" />
       <recent name="$PROJECT_DIR$/userAccount" />
-      <recent name="$PROJECT_DIR$/shoppingCart/templates" />
-      <recent name="$PROJECT_DIR$/shoppingCart" />
     </key>
   </component>
   <component name="RunManager" selected="Python.user">
@@ -130,6 +133,28 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="ratings" type="PythonConfigurationType" factoryName="Python">
+      <module name="Emerging-Technologies" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="/usr/bin/python3" />
+      <option name="SDK_NAME" value="Python 3.9" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ratings" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ratings/risk_ratings.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="user" type="PythonConfigurationType" factoryName="Python">
       <module name="Emerging-Technologies" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -154,6 +179,7 @@
     </configuration>
     <list>
       <item itemvalue="Python.user" />
+      <item itemvalue="Python.ratings" />
       <item itemvalue="Python.Home" />
       <item itemvalue="Python.orders" />
       <item itemvalue="Python.products" />
