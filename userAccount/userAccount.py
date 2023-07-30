@@ -25,8 +25,9 @@ if not os.path.exists(storage):
 # Populating our array with users already created
 with open(storage, "r") as json_file:
     userList = json.load(json_file)
-            
-            
+
+
+
 
 # We will use the /user with methods of POST and GET to either get user information or display it respectively
 @app.route('/user', methods=['GET', 'POST'])
@@ -90,12 +91,13 @@ def getAllOrderDetails(userID):
                for product in products_info:
                    print("product type : " , type(product))
                    print(product)
-                   if(product[0].get('productID')==order.get('productID')):
+                   if( len(product) > 0 and product[0].get('productID')==order.get('productID')):
 
                         order['products'] = product
                         #calculate total price and add it to the json
                         order['Total_price'] = float(product[0].get('productPrice')) * float(order.get('quantity'))
                         del order['productID']
+
         print(len(orders_info))
         return orders_info
     else:
@@ -108,4 +110,4 @@ def index():
     return render_template('index.html')
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=6000, debug=True)
+    app.run(host='0.0.0.0', port=80)

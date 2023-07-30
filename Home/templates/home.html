@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Download / Email / Print your Receipt!</title>
+
+</head>
+<body>
+    <h1>Welcome to our Application</h1>
+    <a href="http://127.0.0.1:5000/Receipt" target="_blank" >Create an Account</a>
+    <a href="" ><button>Sign In</button></a>
+
+    <input type="text" value="" name="userID" id="userID">
+    <button onclick="getUserInfo()">User details</button>
+
+    <div id="tableContainer"></div>
+
+<script>
+
+
+function getUserInfo(){
+    var inputElement = document.getElementById('userID');
+    var tableData = "<table border='1'><tr><th>Order ID</th><th>User ID</th><th>Quantity</th><th>Total Price</th><th>Product Name</th><th>Product Price</th><th>Product Rating</th></tr>";
+
+    var userID = inputElement.value;
+            const url = 'http://127.0.0.1:80/user/orderDetails/'+userID; // Replace with your API URL
+            console.log(url);
+
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                console.log(data);
+                   // Loop through the JSON data and populate the table rows
+    for (var i = 0; i < data.length; i++) {
+        var order = jsonData[i];
+        var products = order.products;
+
+        for (var j = 0; j < products.length; j++) {
+            var product = products[j];
+
+            tableData += "<tr>";
+            tableData += "<td>" + order.orderID + "</td>";
+            tableData += "<td>" + order.userID + "</td>";
+            tableData += "<td>" + order.quantity + "</td>";
+            tableData += "<td>" + order.Total_price + "</td>";
+            tableData += "<td>" + product.productName + "</td>";
+            tableData += "<td>" + product.productPrice + "</td>";
+            tableData += "<td>" + product.productRating + "</td>";
+            tableData += "</tr>";
+        }
+    }
+
+    tableData += "</table>";
+
+    // Add the table to the 'tableContainer' div
+    document.getElementById('tableContainer').innerHTML = tableData;
+
+                })
+                .catch(error => {
+                    console.error('Error fetching data:', error);
+                });
+
+}
+
+    </script>
+
+</body>
+</html>

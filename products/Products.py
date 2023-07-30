@@ -88,7 +88,7 @@ def main():
 
 def loadJson():
     # Read JSON file
-    with open('./productList.json') as file:
+    with open('productList.json') as file:
         data = json.load(file)
 
     # Access JSON file into array and create a list to host parsed info
