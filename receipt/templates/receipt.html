@@ -14,15 +14,15 @@
     <button onclick="printPage()">Print</button>
     <script >
         function getReceipt() {
-    // Get the values from the input fields
+
     var orderId = document.getElementById('orderId').value;
     console.log(orderId);
     const url = "http://127.0.0.1:5000/receipt/order/"+ orderId;
 
     const requestOptions = {
-        method: "GET", // Replace with the desired HTTP method (e.g., GET, POST, PUT, DELETE)
+        method: "GET",
         headers: {
-        "Content-Type": "application/json", // Specify that we're sending JSON data
+        "Content-Type": "application/json",
     }
 
     };
@@ -33,23 +33,23 @@ fetch(url, requestOptions)
     if (!response.ok) {
       throw new Error(`Network response was not ok: ${response.status} ${response.statusText}`);
     }
-    return response.json(); // Parse the response JSON data
+    return response.json();
   })
   .then((data) => {
 
     var element = document.getElementById('response');
     console.log(element);
     element.innerHTML= `
-    <h3>orderID : ${data.orderID}</h3>
-    <h3>productName : ${data['productName']}</h3>
-    <h3>price : ${data['price']}</h3>
     <h3>reciptNumber : ${data['reciptNumber']}</h3>
-    <h3>totalPrice : ${data['totalPrice']}</h3>
+    <h4>orderID : ${data.orderID}</h4>
+    <h4>productName : ${data['productName']}</h4>
+    <h4>price : ${data['price']}</h4>
+    <h4>totalPrice : ${data['totalPrice']}</h4>
     `;
     console.log(data);
   })
   .catch((error) => {
-    // Handle any errors that occurred during the fetch
+
     console.error("Error:", error);
   });
 
