@@ -2,7 +2,11 @@ from flask import Flask, render_template, request, redirect, jsonify
 import requests
 import json
 import urllib.request
+import os
 app = Flask(__name__)
+
+#Global
+shoppingCart = []
 
 # Add an item class
 class Item:
@@ -20,36 +24,34 @@ class Item:
     def get_id(self):
         return self.ID
 
-shoppingCart = []
-
 @app.route('/', methods=['GET', 'POST'])
 def main():
     global shoppingCart
     if request.method == 'POST':
         action = request.form.get('action')
         if action == '1':
-            addItem()
+            addItem(userID=None)
             return render_template('index.html', message="Add an Item")
         elif action == '2':
-            removeItem()
+            removeItem(userID=None)
             return render_template('index.html', message="Remove an Item")
         elif action == '3':
             price = totalPrice()
             return render_template('index.html', message=f"Total: ${price:.2f}")
         elif action == '4':
-            return checkout()
+            return checkout(userID=None)
         else:
             return render_template('index.html', message="Invalid action")
     else:
         return render_template('index.html', message="")
 
 # Display addItem.html
-@app.route('/shoppingcart', methods=['GET'])
-def showAddItemPage():
-    return render_template('addItem.html')
+@app.route('/shoppingcart/<userID>', methods=['GET'])
+def showAddItemPage(userID):
+    return render_template('addItem.html', userID=userID)
 # Add a product to the shopping cart. If the item already exists, increment.
-@app.route('/shoppingcart', methods=['POST'])
-def addItem():
+@app.route('/shoppingcart/<userID>', methods=['POST'])
+def addItem(userID):
     global shoppingCart
     chosenItem = request.form.get('chosenItem')
     if chosenItem == '1':
@@ -90,31 +92,44 @@ def addToCart(item):
         shoppingCart.append((item_instance, 1))
     
 
-@app.route('/checkout', methods=['GET', 'POST'])
-def checkout():
+@app.route('/checkout/<userID>', methods=['GET', 'POST'])
+def checkout(userID):
     global shoppingCart
 
     items_list = []
     for item, quantity in shoppingCart:
         item_info = {
+            'userID': userID,
             'name': item.get_name(),
             'price': item.get_price(),
             'quantity': quantity
         }
         items_list.append(item_info)
 
+    if(userID != None):
+        filename = f"shoppingCart.json"
+        if os.path.exists(filename):
+            with open(filename, 'r') as f:
+                existing_data = json.load(f)
+                existing_data.append(items_list)
+        else:
+            existing_data = [items_list]
+
+        with open(filename, 'w') as f:
+            json.dump(existing_data, f)
+
     return jsonify(items_list)
 
 
 
 # Display removeItem.html
-@app.route('/removeshoppingcart', methods=['GET'])
-def showRemoveItemPage():
-    return render_template('removeItem.html')
+@app.route('/removeshoppingcart/<userID>', methods=['GET'])
+def showRemoveItemPage(userID):
+    return render_template('removeItem.html', userID=userID)
 
 # Remove a product from the shopping cart.
-@app.route('/removeshoppingcart', methods=['POST'])
-def removeItem():
+@app.route('/removeshoppingcart/<userID>', methods=['POST'])
+def removeItem(userID):
     global shoppingCart
     chosenItem = request.form.get('chosenItem')
     if chosenItem:
