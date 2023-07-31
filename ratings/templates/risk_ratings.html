@@ -1,0 +1,81 @@
+<!--<!DOCTYPE html>-->
+<!--<html>-->
+<!--<head>-->
+<!--    <title>Cybersecurity Product Ratings</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--    <h1>Cybersecurity Product Risk Ratings</h1>-->
+<!--    <select name="rating">-->
+<!--        <input type="text" id="prodID" name="prodID">-->
+<!--        <option value="Low">Low</option>-->
+<!--        <option value="Medium">Medium</option>-->
+<!--        <option value="High">High</option>-->
+<!--    </select>-->
+<!--    <button onclick="submit" value="">Submit</button>-->
+<!--</body>-->
+<!--</html>-->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cybersecurity Product Risk Ratings</title>
+</head>
+<body>
+    <h1>Cybersecurity Product Risk Ratings</h1>
+    <form id="ratingForm">
+        <input type="text" id="prodID" name="prodID" placeholder="Product ID">
+        <select name="rating" id="ratingSelect">
+            <option value="Low">Low</option>
+            <option value="Medium">Medium</option>
+            <option value="High">High</option>
+        </select>
+        <button type="button" onclick="submitForm()">Submit</button>
+    </form>
+
+    <script>
+        function submitForm() {
+    // Get the values from the input fields
+    var prodIDValue = document.getElementById('prodID').value;
+    var ratingValue = document.getElementById('ratingSelect').value;
+
+    // Create a JSON object with the entered values
+    var jsonData = {
+        "productID": prodIDValue,
+        "riskRating": ratingValue
+    };
+
+// Endpoint URL
+const apiUrl = "http://127.0.0.1:10000/addratings";
+
+// Options for the fetch request
+const requestOptions = {
+  method: "POST", // Replace with the desired HTTP method (e.g., GET, POST, PUT, DELETE)
+  headers: {
+    "Content-Type": "application/json", // Specify that we're sending JSON data
+  },
+  body: JSON.stringify(jsonData), // Convert the JSON data to a string
+};
+
+// Make the fetch request
+fetch(apiUrl, requestOptions)
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error(`Network response was not ok: ${response.status} ${response.statusText}`);
+    }
+    return response.json(); // Parse the response JSON data
+  })
+  .then((data) => {
+    // Handle the response data here
+    console.log("Response data:", data);
+  })
+  .catch((error) => {
+    // Handle any errors that occurred during the fetch
+    console.error("Error:", error);
+  });
+
+
+}
+
+    </script>
+</body>
+</html>

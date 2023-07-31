@@ -1,1 +1,22 @@
-[{"productID": "P123", "riskRating": "5"}, {"productID": "P987", "riskRating": "4.5"}]
+[
+  {
+    "productID": "P123",
+    "riskRating": "low"
+  },
+  {
+    "productID": "P987",
+    "riskRating": "high"
+  },
+  {
+    "productID": "P111",
+    "riskRating": "medium"
+  },
+  {
+    "productID": "U454",
+    "riskRating": "Low"
+  },
+  {
+    "productID": "U555",
+    "riskRating": "High"
+  }
+]

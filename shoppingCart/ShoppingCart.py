@@ -48,7 +48,7 @@ def main():
 def showAddItemPage():
     return render_template('addItem.html')
 # Add a product to the shopping cart. If the item already exists, increment.
-@app.route('/shoppingcart', methods=['POST'])
+@app.route('/shoppingcart/<UserID>', methods=['POST'])
 def addItem():
     global shoppingCart
     chosenItem = request.form.get('chosenItem')
@@ -161,4 +161,4 @@ def get_products_from_products_microservice(productName):
         return "Error connecting to the microservice: " + str(e)
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=10)
+    app.run(host='0.0.0.0', port=12000)
