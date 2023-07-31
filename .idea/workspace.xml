@@ -6,7 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="c9da71d1-cf0d-4290-8d37-da2afe948e65" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/receipt/templates/receipt.html" beforeDir="false" afterPath="$PROJECT_DIR$/receipt/templates/receipt.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Home/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/Home/templates/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/userAccount/templates/user.html" beforeDir="false" afterPath="$PROJECT_DIR$/userAccount/templates/user.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/userAccount/userAccount.py" beforeDir="false" afterPath="$PROJECT_DIR$/userAccount/userAccount.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/userAccount/userList.json" beforeDir="false" afterPath="$PROJECT_DIR$/userAccount/userList.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/userLogon/userLogon.py" beforeDir="false" afterPath="$PROJECT_DIR$/userLogon/userLogon.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,7 +46,7 @@
       <recent name="$PROJECT_DIR$/payments" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.Receipt">
+  <component name="RunManager" selected="Python.userlogon">
     <configuration name="Home" type="PythonConfigurationType" factoryName="Python">
       <module name="Emerging-Technologies" />
       <option name="INTERPRETER_OPTIONS" value="" />

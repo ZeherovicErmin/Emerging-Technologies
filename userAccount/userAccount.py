@@ -36,27 +36,30 @@ def user():
     if request.method == 'GET':
         return jsonify(userList), 200
     elif request.method == 'POST':
-        data = request.get_json()
+        data = request.form
         if 'username' in data and 'password' in data:
             
             # Ensuring duplicate usernames aren't created
             for user in userList:
-                if user['Username'] == data['username']:
+                if user['username'] == data['username']:
                     return jsonify({'message': 'Username already taken!'},400)
                 
             id+=1;
-            # Creating a new user 
+            # Creating a new user
+            userId="U"+ str(id)
             new_user = {
-                'userID': "U"+ str(id),
+                'userID': userId,
                 'username': data['username'],
-                'password': data['password']
+                'password': data['password'],
+                'emailID' : data['emailID'],
+                'phoneNumber' : data['phoneNumber']
             }
             userList.append(new_user)
             
             with open(storage, "w") as json_file:
                 json.dump(userList, json_file)
 
-            return jsonify({'message': 'User created successfully'}), 201
+            return render_template('success.html',userID=userId ),200
         else:
             return jsonify({'message': 'Username and password are required'}), 400
         
@@ -125,7 +128,7 @@ def getAllOrderDetails(userID):
 
 @app.route('/', methods=['GET'])
 def index():
-    return render_template('index.html')
+    return render_template('user.html')
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80)

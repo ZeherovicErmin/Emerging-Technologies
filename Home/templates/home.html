@@ -6,12 +6,17 @@
 
 </head>
 <body>
-    <h1>Welcome to our Application</h1>
-    <a href="http://127.0.0.1:5000/Receipt" target="_blank" >Create an Account</a>
-    <a href="" ><button>Sign In</button></a>
 
+    <h1>Wellcome to our application</h1>
+
+    <br>
+    <a href="http://127.0.0.1:80/">Create Account</a>
+
+<!--    <button onclick="createAccount()">Create Account</button>-->
+<!--    <button onclick="login()">login</button>-->
     <input type="text" value="" name="userID" id="userID">
     <button onclick="getUserInfo()">User details</button>
+    <br>
 
     <div id="tableContainer"></div>
 
@@ -19,20 +24,35 @@
 
 
 function getUserInfo(){
+
+
     var inputElement = document.getElementById('userID');
     var tableData = "<table border='1'><tr><th>Order ID</th><th>User ID</th><th>Quantity</th><th>Total Price</th><th>Product Name</th><th>Product Price</th><th>Product Rating</th></tr>";
 
+ const requestOptions = {
+        method: "GET",
+        headers: {
+        "Content-Type": "application/json",
+
+    }
+
+    };
     var userID = inputElement.value;
-            const url = 'http://127.0.0.1:80/user/orderDetails/'+userID; // Replace with your API URL
+            const url = 'http://127.0.0.1:80/user/orderDetails/'+userID;
             console.log(url);
 
-            fetch(url)
-                .then(response => response.json())
+            fetch(url,requestOptions)
+                .then((response) => {
+                 if (!response.ok) {
+                    throw new Error(`Network response was not ok: ${response.status} ${response.statusText}`);
+                     }
+                return response.json()
+                })
                 .then(data => {
                 console.log(data);
-                   // Loop through the JSON data and populate the table rows
+
     for (var i = 0; i < data.length; i++) {
-        var order = jsonData[i];
+        var order = data[i];
         var products = order.products;
 
         for (var j = 0; j < products.length; j++) {
@@ -51,8 +71,6 @@ function getUserInfo(){
     }
 
     tableData += "</table>";
-
-    // Add the table to the 'tableContainer' div
     document.getElementById('tableContainer').innerHTML = tableData;
 
                 })
@@ -61,6 +79,26 @@ function getUserInfo(){
                 });
 
 }
+
+    function createAccount(){
+
+
+             const requestOptions = {
+        method: "GET",
+        headers: {
+        "Content-Type": "application/json",
+
+    }
+
+
+
+    }
+
+    function login(){
+
+    }
+
+
 
     </script>
 

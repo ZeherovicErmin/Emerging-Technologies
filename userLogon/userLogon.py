@@ -1,3 +1,4 @@
+import requests
 from flask import Flask, jsonify, request, render_template, json
 import os
 app = Flask(__name__)
@@ -24,10 +25,12 @@ def login():
         # Test cases for logon services
         
         for user in userList:
-            
+            print(user['username'])
+            print(data.get('username'))
+            print(user['password'])
             # All correct
-            if user['Username'] == data.get('username') and user['Password'] == data.get('password'):
-                return jsonify({'message': 'Login Succesful!'},200)
+            if user['username'] == data.get('username') and user['password'] == data.get('password'):
+                requests.get('http://127.0.0.1:3000/Home')
              
             
     # Return statement if username/password is incorrect       
