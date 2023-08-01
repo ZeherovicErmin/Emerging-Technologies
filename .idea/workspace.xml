@@ -7,15 +7,30 @@
     <list default="true" id="c9da71d1-cf0d-4290-8d37-da2afe948e65" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Home/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/Home/templates/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/Products.py" beforeDir="false" afterPath="$PROJECT_DIR$/products/Products.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/productList.json" beforeDir="false" afterPath="$PROJECT_DIR$/products/productList.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ratings/ratings.json" beforeDir="false" afterPath="$PROJECT_DIR$/ratings/ratings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ratings/risk_ratings.py" beforeDir="false" afterPath="$PROJECT_DIR$/ratings/risk_ratings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ratings/templates/risk_ratings.html" beforeDir="false" afterPath="$PROJECT_DIR$/ratings/templates/risk_ratings.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/receipt/receipt.py" beforeDir="false" afterPath="$PROJECT_DIR$/receipt/receipt.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/userAccount/templates/user.html" beforeDir="false" afterPath="$PROJECT_DIR$/userAccount/templates/user.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/userAccount/userAccount.py" beforeDir="false" afterPath="$PROJECT_DIR$/userAccount/userAccount.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/userAccount/userList.json" beforeDir="false" afterPath="$PROJECT_DIR$/userAccount/userList.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/userLogon/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/userLogon/templates/login.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/userLogon/userLogon.py" beforeDir="false" afterPath="$PROJECT_DIR$/userLogon/userLogon.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="shopping-cart-development" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -31,12 +46,16 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "/Users/punithaj/Desktop/Microservices/Final Project/Emerging-Technologies/receipt"
+    "last_opened_file_path": "/Users/punithaj/Desktop/Microservices/FinalProject/Emerging-Technologies"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/receipt" />
+      <recent name="$PROJECT_DIR$/Home" />
+      <recent name="$PROJECT_DIR$/orders" />
+      <recent name="$PROJECT_DIR$/payments" />
+      <recent name="$PROJECT_DIR$/products" />
+      <recent name="$PROJECT_DIR$/ratings" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/ratings/templates/static" />
@@ -46,7 +65,7 @@
       <recent name="$PROJECT_DIR$/payments" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.userlogon">
+  <component name="RunManager" selected="Python.ratings">
     <configuration name="Home" type="PythonConfigurationType" factoryName="Python">
       <module name="Emerging-Technologies" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -105,6 +124,28 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/orders/orders.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="payments" type="PythonConfigurationType" factoryName="Python">
+      <module name="Emerging-Technologies" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="/usr/bin/python3" />
+      <option name="SDK_NAME" value="Python 3.9" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/payments" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/payments/paymentProcessor.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -226,6 +267,7 @@
     <list>
       <item itemvalue="Python.user" />
       <item itemvalue="Python.ratings" />
+      <item itemvalue="Python.payments" />
       <item itemvalue="Python.userlogon" />
       <item itemvalue="Python.shoppingcart" />
       <item itemvalue="Python.Home" />

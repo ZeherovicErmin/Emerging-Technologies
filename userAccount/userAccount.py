@@ -32,21 +32,21 @@ with open(storage, "r") as json_file:
 # We will use the /user with methods of POST and GET to either get user information or display it respectively
 @app.route('/user', methods=['GET', 'POST'])
 def user():
-    id=100;
+
     if request.method == 'GET':
         return jsonify(userList), 200
     elif request.method == 'POST':
-        data = request.form
+        # data = request.get_json()
+        data=request.form
         if 'username' in data and 'password' in data:
             
             # Ensuring duplicate usernames aren't created
             for user in userList:
                 if user['username'] == data['username']:
                     return jsonify({'message': 'Username already taken!'},400)
-                
-            id+=1;
+
             # Creating a new user
-            userId="U"+ str(id)
+            userId= "U1" + str(len(userList)+100);
             new_user = {
                 'userID': userId,
                 'username': data['username'],
@@ -59,7 +59,9 @@ def user():
             with open(storage, "w") as json_file:
                 json.dump(userList, json_file)
 
-            return render_template('success.html',userID=userId ),200
+            # return jsonify({'message': 'user created successfully'}), 200
+            return render_template('success.html', userID=userId ),200
+                #jsonify({'message': 'Username and password are required'}), 400
         else:
             return jsonify({'message': 'Username and password are required'}), 400
         
@@ -115,7 +117,7 @@ def getAllOrderDetails(userID):
                         order['Total_price'] = float(product[0].get('productPrice')) * float(order.get('quantity'))
                         del order['productID']
                         order['Payment_details'] = payment_info
-                        order['cyberSecurityRiskRating']= ratings_info.get("")
+                        order['cyberSecurityRiskRating']= ratings_info.get("rating")
 
         print(len(orders_info))
 

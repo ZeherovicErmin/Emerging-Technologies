@@ -32,6 +32,10 @@
         <button type="button" onclick="submitForm()">Submit</button>
     </form>
 
+    <br>
+
+    <div id="response"></div>
+
     <script>
         function submitForm() {
     // Get the values from the input fields
@@ -62,15 +66,13 @@ fetch(apiUrl, requestOptions)
     if (!response.ok) {
       throw new Error(`Network response was not ok: ${response.status} ${response.statusText}`);
     }
-    return response.json(); // Parse the response JSON data
+
   })
   .then((data) => {
-    // Handle the response data here
-    console.log("Response data:", data);
+    document.getElementById('response').innerHTML="Successfully added ratings for the product";
   })
   .catch((error) => {
-    // Handle any errors that occurred during the fetch
-    console.error("Error:", error);
+    document.getElementById('prodID').innerHTML=error;
   });
 
 

@@ -1,5 +1,5 @@
 import requests
-from flask import Flask, jsonify, request, render_template, json
+from flask import Flask, jsonify, request, render_template, json, redirect, url_for
 import os
 app = Flask(__name__)
 
@@ -16,7 +16,7 @@ with open(storage, "r") as json_file:
 @app.route('/user/login', methods=['POST'])
 
 def login():
-    data = request.form
+    data = request.get_json()
     
 
     if 'username' in data and 'password' in data:
@@ -30,9 +30,9 @@ def login():
             print(user['password'])
             # All correct
             if user['username'] == data.get('username') and user['password'] == data.get('password'):
-                requests.get('http://127.0.0.1:3000/Home')
-             
-            
+                print("success")
+                return jsonify({'message':'succesfull logged in'}, 200)
+
     # Return statement if username/password is incorrect       
     return jsonify({'message': 'Username or password is incorrect.'},401) 
     

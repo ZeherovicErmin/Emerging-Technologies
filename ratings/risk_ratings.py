@@ -34,7 +34,6 @@ def getProductRating(productID):
 @app.route("/addratings", methods=['POST'])
 def addNewRating():
     ratingsList = load_json()
-    print(type(ratingsList))
     ratings = request.get_json()
     ratingsList.append(ratings)
     save_json(ratingsList)

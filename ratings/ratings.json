@@ -18,5 +18,53 @@
   {
     "productID": "U555",
     "riskRating": "High"
+  },
+  {
+    "productID": "P877",
+    "riskRating": "medium"
+  },
+  {
+    "productID": "P345",
+    "riskRating": "High"
+  },
+  {
+    "productID": "P345",
+    "riskRating": "High"
+  },
+  {
+    "productID": "P345",
+    "riskRating": "High"
+  },
+  {
+    "productID": "P345",
+    "riskRating": "High"
+  },
+  {
+    "productID": "P345",
+    "riskRating": "High"
+  },
+  {
+    "productID": "P345",
+    "riskRating": "High"
+  },
+  {
+    "productID": "P345",
+    "riskRating": "High"
+  },
+  {
+    "productID": "P345",
+    "riskRating": "High"
+  },
+  {
+    "productID": "P777",
+    "riskRating": "low"
+  },
+  {
+    "productID": "P999",
+    "riskRating": "Medium"
+  },
+  {
+    "productID": "P177",
+    "riskRating": "Low"
   }
 ]

@@ -34,7 +34,7 @@ def getReceipt(orderID):
         "price" : product['productPrice'],
         "totalPrice" : float(order['quantity']) * float(product['productPrice'])
     }
-
+    print(receipt)
     return receipt;
 
 if __name__ == '__main__':
