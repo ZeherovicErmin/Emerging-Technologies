@@ -3,10 +3,12 @@ import json
 
 app = Flask(__name__)
 
+
 class Orders:
     def toJSON(self):
         return json.dumps(self, default=lambda o: o.__dict__,
                           sort_keys=True, indent=4)
+
     # Class variables
     orderID = None
     productID = None
@@ -14,42 +16,48 @@ class Orders:
     quantity = None
 
     # Constructor
-    def __init__(self, orderID,productID, userID, quantity):
-        self.orderID=orderID
+    def __init__(self, orderID, productID, userID, quantity):
+        self.orderID = orderID
         self.productID = productID
         self.userID = userID
         self.quantity = quantity
 
         # Getter methods
+
     def getProductID(self):
-            return self.productID
+        return self.productID
 
     def getOrderID(self):
-            return self.orderID
+        return self.orderID
 
     def getUserID(self):
-            return self.userID
+        return self.userID
 
     def getQuantity(self):
-            return self.quantity
+        return self.quantity
 
 
+@app.route('/')
+def base():
+    print("running")
 
-#fetch all orders
+
+# fetch all orders
 @app.route('/allOrders')
 def main():
     orders = load_json()
     return orders
 
-#fetch orders based on order ID
+
+# fetch orders based on order ID
 @app.route('/orders/<orderID>', methods=['GET'])
 def findByOrderID(orderID):
-    orders_info=[]
+    orders_info = []
     orders = loadJsonAsList()
     orderID = request.view_args['orderID']
     for order in orders:
-        if(order.getOrderID()==orderID):
-           orders_info.append(order)
+        if (order.getOrderID() == orderID):
+            orders_info.append(order)
 
     if (len(orders_info) > 0):
         return displayOrders(orders_info), 200
@@ -57,7 +65,7 @@ def findByOrderID(orderID):
         return "No order details found with order ID :" + orderID
 
 
-#fetch order based on userID
+# fetch order based on userID
 @app.route('/orders/user/<userID>', methods=['GET'])
 def findByUserID(userID):
     orders_info = []
@@ -67,12 +75,13 @@ def findByUserID(userID):
         if (order.getUserID() == userID):
             orders_info.append(order)
 
-    if(len(orders_info)>0):
+    if (len(orders_info) > 0):
         return displayOrders(orders_info), 200
     else:
         return "No order details found for user associated with user ID :" + userID
 
-#add new order
+
+# add new order
 @app.route('/orders/addNewOrder', methods=['POST'])
 def addNewOrder():
     try:
@@ -139,6 +148,5 @@ def loadJsonAsList():
     return orders
 
 
-
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=60)
+    app.run(host='0.0.0.0', port=10000)
