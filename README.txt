@@ -8,7 +8,12 @@ if you wish to change it you should update the 'def get_products_from_products_m
 From the json file it pulls from 'productName, productId, and productPrice' fields aslong as you have those it will work
 
 endpoints in this program are:
-https://localhost:10/                      - Main index page displays a few buttons of actions the user can take
-https://localhost:10/shoppingcart/<userID>          - Displays items the user can add to their cart
-https://localhost:10/removeshoppingcart/<userID>   - Displays items the user can remove from their cart
-https://localhost:10/checkout/<userID>              - Displays the shopping cart and its contents in a json format, can add a userID and an orderID if needed.
+https://localhost:10/welcome/<userID>      -welcome page for the user (takes in the userID)
+https://localhost:10/                     - Main index page displays a few buttons of actions the user can take
+https://localhost:10/shoppingcart         - Displays items the user can add to their cart
+https://localhost:10/removeshoppingcart   - Displays items the user can remove from their cart
+https://localhost:10/checkout              - Displays the shopping cart and its contents in a json format, can add a userID and an orderID if needed.
+
+Works the same as before but I just switched a few things up 
+The new code is in the shoppingCart, templates, and static folders
+
