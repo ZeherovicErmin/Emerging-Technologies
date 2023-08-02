@@ -1,0 +1,13 @@
+body {
+    background-color: black;
+    color: white;
+    text-align: center;
+    font-family: "Copperplate", "Courier New", monospace;
+    font-size: 60px;
+  }
+  
+  h1 {
+    color: white;
+    margin-left: 20px;
+    text-align: center;
+  }
