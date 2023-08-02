@@ -17,25 +17,28 @@ def ratings():
 @app.route("/receipt/order/<orderID>")
 def getReceipt(orderID):
     receiptNum=100
-    orderID = request.view_args['orderID']
-    orders_url = config.get('Settings', 'orders_url')
-    products_url = config.get('Settings', 'products_url')
-    response = requests.get(orders_url+orderID)
-    data = response.json()
-    order=data[0]
-    productID=order['productID']
-    product_info=requests.get(products_url+productID).json()
-    product = product_info[0]
-    receiptNum+=1;
-    receipt = {
+    try:
+        orderID = request.view_args['orderID']
+        orders_url = config.get('Settings', 'orders_url')
+        products_url = config.get('Settings', 'products_url')
+        response = requests.get(orders_url+orderID)
+        data = response.json()
+        order=data[0]
+        productID=order['productID']
+        product_info=requests.get(products_url+productID).json()
+        product = product_info[0]
+        receiptNum+=1;
+        receipt = {
         "reciptNumber" : "R" + str(receiptNum),
         "orderID" : orderID,
         "productName": product['productName'],
         "price" : product['productPrice'],
         "totalPrice" : float(order['quantity']) * float(product['productPrice'])
-    }
-    print(receipt)
-    return receipt;
+        }
+        return receipt;
+
+    except Exception as e:
+        return jsonify({"message":"Error while finding order informations. Please check the order ID provided"}), 500
 
 if __name__ == '__main__':
     app.run(debug=True)

@@ -4,7 +4,7 @@ import json
 import random
 import string
 import os
-app = Flask(__name__, template_folder='../templates')
+app = Flask(__name__, template_folder='templates')
 
 #Global
 shoppingCart = []
@@ -158,6 +158,23 @@ def checkout(user_id):
 
         with open(filename, 'w') as f:
             json.dump(existing_data, f)
+        print(existing_data)
+        for item in existing_data:
+            for order in item:
+             new_order=jsonify(order)
+             o=new_order.get_json()
+             json_order={
+                 "orderID":o.get('orderID'),
+                 "productID":o.get('productID'),
+                 "quantity" :o.get('quantity'),
+                 "userID":o.get('userID')
+             }
+             headers = {
+                 "Content-Type": "application/json"
+             }
+             print(json_order)
+             r = requests.post('http://127.0.0.1:60/orders/addNewOrder', data=json_order , headers=headers)
+             print(f"Status Code: {r.status_code}, Response: {r.json()}")
 
     return jsonify(items_list)
 
@@ -171,7 +188,7 @@ def generateOrderID():
 #NOTE: for this, have the products.py application running on port 80, if needed you can change the productsUrl to whatever else link.
 #If you do change the url, make sure the fields match such as productName, productId, and productPrice.
 def get_products_from_products_microservice(productName):
-    productsUrl = f'http://localhost:80/product?name={productName}'
+    productsUrl = f'http://127.0.0.1:4000/product?name={productName}'
     try:
         response = requests.get(productsUrl)
 

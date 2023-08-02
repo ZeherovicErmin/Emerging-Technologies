@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: receipt
+  labels:
+    name: receipt
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: receipt
+  template:
+    metadata:
+      name: receipt
+      labels:
+        app: receipt
+    spec:
+      containers:
+        - name: receipt
+          image: punithaj07/receipt
+          imagePullPolicy: IfNotPresent
+      restartPolicy: Always

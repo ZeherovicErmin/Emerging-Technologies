@@ -37,7 +37,7 @@ def paymentDetails(userID):
                 'CCV': user['CCV']
             }
             return user_payment
-    return "not found"
+    return jsonify({"message" : "user not found."}), 500
 
 @app.route('/user/payment', methods=['POST'])
 def payment():

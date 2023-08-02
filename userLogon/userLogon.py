@@ -3,12 +3,12 @@ from flask import Flask, jsonify, request, render_template, json, redirect, url_
 import os
 app = Flask(__name__)
 
-# An application to simulate user login
 
-# Creating a variable to store the json filepath
+
+
 storage = "userList.json"
 
-# Populating our array with users already created
+
 with open(storage, "r") as json_file:
     userList = json.load(json_file)
 
@@ -16,7 +16,7 @@ with open(storage, "r") as json_file:
 @app.route('/user/login', methods=['POST'])
 
 def login():
-    data = request.get_json()
+    data = request.form
     
 
     if 'username' in data and 'password' in data:

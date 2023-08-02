@@ -66,5 +66,9 @@
   {
     "productID": "P177",
     "riskRating": "Low"
+  },
+  {
+    "productID": "P123",
+    "riskRating": "High"
   }
 ]

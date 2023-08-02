@@ -88,6 +88,7 @@ def addNewOrder():
         new_order = request.get_json()  # Assuming the request body contains the new order as JSON
         if new_order:
             orders_data = load_json()
+
             orders_data["orders"].append(new_order)
             save_json(orders_data)
             return jsonify({"message": "New order added successfully."}), 200
@@ -96,6 +97,20 @@ def addNewOrder():
     except Exception as e:
         return jsonify({"message": "Error occurred while adding the new order.", "error": str(e)}), 500
 
+
+@app.route('/orders/cancelOrder/<orderID>')
+def cancelOrder(orderID):
+    orders = loadJsonAsList()
+    orderID = request.view_args['orderID']
+    after_cancel=[]
+    for order in orders:
+        print(order.getOrderID())
+        if(order.getOrderID()==orderID):
+            orders.remove(order)
+            save_json(displayOrders(orders))
+            return jsonify({'message':"Your order has been cancelled Successfully. Refund will be initiated"})
+
+    return jsonify({'message':"No order found with the given orderID"})
 
 def displayOrders(orders):
     order_info = []

@@ -6,17 +6,28 @@
   <component name="ChangeListManager">
     <list default="true" id="c9da71d1-cf0d-4290-8d37-da2afe948e65" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Home/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Home/Dockerfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Home/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/Home/templates/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/products/Products.py" beforeDir="false" afterPath="$PROJECT_DIR$/products/Products.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/products/productList.json" beforeDir="false" afterPath="$PROJECT_DIR$/products/productList.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/orders/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/orders/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/orders/orders.py" beforeDir="false" afterPath="$PROJECT_DIR$/orders/orders.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/orders/static/orders.json" beforeDir="false" afterPath="$PROJECT_DIR$/orders/static/orders.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/payments/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/payments/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/payments/paymentProcessor.py" beforeDir="false" afterPath="$PROJECT_DIR$/payments/paymentProcessor.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/payments/userPaymentList.json" beforeDir="false" afterPath="$PROJECT_DIR$/payments/userPaymentList.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/products/Dockerfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ratings/ratings.json" beforeDir="false" afterPath="$PROJECT_DIR$/ratings/ratings.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ratings/risk_ratings.py" beforeDir="false" afterPath="$PROJECT_DIR$/ratings/risk_ratings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ratings/templates/risk_ratings.html" beforeDir="false" afterPath="$PROJECT_DIR$/ratings/templates/risk_ratings.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/receipt/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/receipt/Dockerfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/receipt/receipt.py" beforeDir="false" afterPath="$PROJECT_DIR$/receipt/receipt.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/userAccount/templates/user.html" beforeDir="false" afterPath="$PROJECT_DIR$/userAccount/templates/user.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shoppingCart/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/shoppingCart/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shoppingCart/ShoppingCart.py" beforeDir="false" afterPath="$PROJECT_DIR$/shoppingCart/ShoppingCart.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/userAccount/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/userAccount/Dockerfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/userAccount/userAccount.py" beforeDir="false" afterPath="$PROJECT_DIR$/userAccount/userAccount.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/userAccount/userList.json" beforeDir="false" afterPath="$PROJECT_DIR$/userAccount/userList.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/userLogon/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/userLogon/Dockerfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/userLogon/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/userLogon/templates/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/userLogon/userList.json" beforeDir="false" afterPath="$PROJECT_DIR$/userLogon/userList.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/userLogon/userLogon.py" beforeDir="false" afterPath="$PROJECT_DIR$/userLogon/userLogon.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -46,16 +57,17 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "/Users/punithaj/Desktop/Microservices/FinalProject/Emerging-Technologies"
+    "last_opened_file_path": "/Users/punithaj/Desktop/Microservices/FinalProject/Emerging-Technologies/userLogon/templates",
+    "settings.editor.selected.configurable": "preferences.keymap"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/Home" />
-      <recent name="$PROJECT_DIR$/orders" />
-      <recent name="$PROJECT_DIR$/payments" />
-      <recent name="$PROJECT_DIR$/products" />
-      <recent name="$PROJECT_DIR$/ratings" />
+      <recent name="$PROJECT_DIR$/userLogon/templates" />
+      <recent name="$PROJECT_DIR$/userLogon" />
+      <recent name="$PROJECT_DIR$/userAccount" />
+      <recent name="$PROJECT_DIR$/shoppingCart" />
+      <recent name="$PROJECT_DIR$/receipt" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/ratings/templates/static" />
@@ -65,7 +77,14 @@
       <recent name="$PROJECT_DIR$/payments" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.ratings">
+  <component name="RunDashboard">
+    <option name="configurationTypes">
+      <set>
+        <option value="docker-deploy" />
+      </set>
+    </option>
+  </component>
+  <component name="RunManager" selected="Python.shoppingcart">
     <configuration name="Home" type="PythonConfigurationType" factoryName="Python">
       <module name="Emerging-Technologies" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -303,8 +322,8 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/userAccount/userAccount.py</url>
-          <line>7</line>
-          <option name="timeStamp" value="1" />
+          <line>54</line>
+          <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

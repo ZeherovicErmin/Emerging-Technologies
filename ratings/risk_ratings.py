@@ -29,7 +29,7 @@ def getProductRating(productID):
                 'rating': rating['riskRating']
             }
             return ratings
-    return "not found"
+    return "Please check the product ID provided "
 
 @app.route("/addratings", methods=['POST'])
 def addNewRating():

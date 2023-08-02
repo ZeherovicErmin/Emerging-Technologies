@@ -3,7 +3,6 @@ import os
 app = Flask(__name__)
 import configparser
 import requests
-import chardet
 
 config = configparser.ConfigParser()
 config.read('config.ini')
@@ -124,7 +123,7 @@ def getAllOrderDetails(userID):
 
         return orders_info
     else:
-        return f"Error: {response.status_code} - {response.text}"
+        return jsonify({"message":"User doesn't have any orders. Please check the userID"}), 404
 
 
 
