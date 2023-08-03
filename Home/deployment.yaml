@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: home
+  labels:
+    name: home
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: home
+  template:
+    metadata:
+      name: home
+      labels:
+        app: home
+    spec:
+      containers:
+        - name: home
+          image: punithaj07/home
+          imagePullPolicy: IfNotPresent
+      restartPolicy: Always

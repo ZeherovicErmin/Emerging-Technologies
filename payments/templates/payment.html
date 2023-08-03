@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="style.css">
+    <title>Emerging Technologies Payment Processing</title>
+</head>
+<body>
+    <h1>Please provide payment details.</h1>
+    <form method="post" action="/user/payment">
+        <label for="username">Username:</label>
+
+        <input type="text" id="username" name="username" required>
+
+        <br>
+
+        <label for="password">Password:</label>
+
+        <input type="password" id="password" name="password" required>
+
+        <br>
+
+        <label for="card#">Cardnum:</label>
+
+        <input type="text" id="card#" name="card#" required>
+        
+        <br> 
+
+        <label for="exp.date">ExpDate:</label>
+
+        <input type="text" id="exp.date" name="exp.date" required>
+
+        <br>
+
+        <label for="ccv">CCV:</label>
+
+        <input type="text" id="ccv" name="ccv" required>
+
+        
+
+        
+
+        <input type="submit" value="payment">
+    </form>
+</body>
+</html>

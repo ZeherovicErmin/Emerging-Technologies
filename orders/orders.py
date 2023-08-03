@@ -3,10 +3,12 @@ import json
 
 app = Flask(__name__)
 
+
 class Orders:
     def toJSON(self):
         return json.dumps(self, default=lambda o: o.__dict__,
                           sort_keys=True, indent=4)
+
     # Class variables
     orderID = None
     productID = None
@@ -14,42 +16,48 @@ class Orders:
     quantity = None
 
     # Constructor
-    def __init__(self, orderID,productID, userID, quantity):
-        self.orderID=orderID
+    def __init__(self, orderID, productID, userID, quantity):
+        self.orderID = orderID
         self.productID = productID
         self.userID = userID
         self.quantity = quantity
 
         # Getter methods
+
     def getProductID(self):
-            return self.productID
+        return self.productID
 
     def getOrderID(self):
-            return self.orderID
+        return self.orderID
 
     def getUserID(self):
-            return self.userID
+        return self.userID
 
     def getQuantity(self):
-            return self.quantity
+        return self.quantity
 
 
+@app.route('/')
+def base():
+    print("running")
 
-#fetch all orders
+
+# fetch all orders
 @app.route('/allOrders')
 def main():
     orders = load_json()
     return orders
 
-#fetch orders based on order ID
+
+# fetch orders based on order ID
 @app.route('/orders/<orderID>', methods=['GET'])
 def findByOrderID(orderID):
-    orders_info=[]
+    orders_info = []
     orders = loadJsonAsList()
     orderID = request.view_args['orderID']
     for order in orders:
-        if(order.getOrderID()==orderID):
-           orders_info.append(order)
+        if (order.getOrderID() == orderID):
+            orders_info.append(order)
 
     if (len(orders_info) > 0):
         return displayOrders(orders_info), 200
@@ -57,7 +65,7 @@ def findByOrderID(orderID):
         return "No order details found with order ID :" + orderID
 
 
-#fetch order based on userID
+# fetch order based on userID
 @app.route('/orders/user/<userID>', methods=['GET'])
 def findByUserID(userID):
     orders_info = []
@@ -67,18 +75,20 @@ def findByUserID(userID):
         if (order.getUserID() == userID):
             orders_info.append(order)
 
-    if(len(orders_info)>0):
+    if (len(orders_info) > 0):
         return displayOrders(orders_info), 200
     else:
         return "No order details found for user associated with user ID :" + userID
 
-#add new order
+
+# add new order
 @app.route('/orders/addNewOrder', methods=['POST'])
 def addNewOrder():
     try:
         new_order = request.get_json()  # Assuming the request body contains the new order as JSON
         if new_order:
             orders_data = load_json()
+
             orders_data["orders"].append(new_order)
             save_json(orders_data)
             return jsonify({"message": "New order added successfully."}), 200
@@ -87,6 +97,20 @@ def addNewOrder():
     except Exception as e:
         return jsonify({"message": "Error occurred while adding the new order.", "error": str(e)}), 500
 
+
+@app.route('/orders/cancelOrder/<orderID>')
+def cancelOrder(orderID):
+    orders = loadJsonAsList()
+    orderID = request.view_args['orderID']
+    after_cancel=[]
+    for order in orders:
+        print(order.getOrderID())
+        if(order.getOrderID()==orderID):
+            orders.remove(order)
+            save_json(displayOrders(orders))
+            return jsonify({'message':"Your order has been cancelled Successfully. Refund will be initiated"})
+
+    return jsonify({'message':"No order found with the given orderID"})
 
 def displayOrders(orders):
     order_info = []
@@ -104,19 +128,19 @@ def displayOrders(orders):
 
 
 def load_json():
-    with open("./orders/static/orders.json", "r") as file:
+    with open("./static/orders.json", "r") as file:
         data = json.load(file)
     return data
 
 
 def save_json(data):
-    with open("./orders/static/orders.json", "w") as file:
+    with open("./static/orders.json", "w") as file:
         json.dump(data, file, indent=2)
 
 
 def loadJsonAsList():
     # Read JSON file
-    with open("./orders/static/orders.json", 'r') as file:
+    with open("./static/orders.json", 'r') as file:
         data = json.load(file)
 
     # Access JSON file into array and create a list to host parsed info
@@ -139,6 +163,5 @@ def loadJsonAsList():
     return orders
 
 
-
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=80)
+    app.run(host='0.0.0.0', port=60)

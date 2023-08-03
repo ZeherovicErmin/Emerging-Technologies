@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <title>Download / Email / Print your Receipt!</title>
+</head>
+<body>
+    <h1> Receipt Information</h1>
+    <input type="text" id="orderId" name="orderId" placeholder="Enter OrderID">
+    <button  onclick="getReceipt()">Get Receipt</button>
+
+    <div id="response"></div>
+
+    <button onclick="printPage()">Print</button>
+    <script >
+        function getReceipt() {
+
+    var orderId = document.getElementById('orderId').value;
+    console.log(orderId);
+    const url = "http://127.0.0.1:5000/receipt/order/"+ orderId;
+
+    const requestOptions = {
+        method: "GET",
+        headers: {
+        "Content-Type": "application/json",
+    }
+
+    };
+
+
+fetch(url, requestOptions)
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error(`Network response was not ok: ${response.status} ${response.statusText}`);
+    }
+    return response.json();
+  })
+  .then((data) => {
+
+    var element = document.getElementById('response');
+    console.log(element);
+    element.innerHTML= `
+    <h3>reciptNumber : ${data['reciptNumber']}</h3>
+    <h4>orderID : ${data.orderID}</h4>
+    <h4>productName : ${data['productName']}</h4>
+    <h4>price : ${data['price']}</h4>
+    <h4>totalPrice : ${data['totalPrice']}</h4>
+    `;
+    console.log(data);
+  })
+  .catch((error) => {
+
+    console.error("Error:", error);
+  });
+
+}
+
+ function printPage(){
+        window.print();
+ }
+    </script>
+
+</body>
+</html>

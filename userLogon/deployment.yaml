@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: userlogon
+  labels:
+    name: userlogon
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: userlogon
+  template:
+    metadata:
+      name: userlogon
+      labels:
+        app: userlogon
+    spec:
+      containers:
+        - name: userlogon
+          image: punithaj07/userlogon
+          imagePullPolicy: IfNotPresent
+      restartPolicy: Always

@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ratings
+  labels:
+    name: orders
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: ratings
+  template:
+    metadata:
+      name: ratings
+      labels:
+        app: ratings
+    spec:
+      containers:
+        - name: ratings
+          image: punithaj07/ratings
+          imagePullPolicy: IfNotPresent
+      restartPolicy: Always
