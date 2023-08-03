@@ -20,7 +20,7 @@
     "riskRating": "High"
   },
   {
-    "productID": "P877",
+    "productID": "P321",
     "riskRating": "medium"
   },
   {
@@ -36,7 +36,7 @@
     "riskRating": "High"
   },
   {
-    "productID": "P345",
+    "productID": "P234",
     "riskRating": "High"
   },
   {
@@ -70,5 +70,17 @@
   {
     "productID": "P123",
     "riskRating": "High"
+  },
+  {
+    "productID": "P999",
+    "riskRating": "Medium"
+  },
+  {
+    "productID": "",
+    "riskRating": ""
+  },
+  {
+    "productID": "p123",
+    "riskRating": "high"
   }
 ]
